@@ -5,7 +5,8 @@
     <string name="setting">ตั้งค่า</string>
     <string name="notification">การแจ้งเตือน</string>
     <string name="noti_sound">เสียงแจ้งเตือน</string>
-    <string name="title_activity_notification">Notification</string>
+    <string name="title_activity_notification">การแจ้งเตือน</string>
+    <string name="title_activity_alarm">เสียงแจ้งเตือน</string>
 
 
 </resources>

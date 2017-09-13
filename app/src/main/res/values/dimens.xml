@@ -4,4 +4,8 @@
     <dimen name="num_q">110dp</dimen>
     <dimen name="text_size20">20sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="text_size25">25sp</dimen>
+    <dimen name="text_size15">15sp</dimen>
+
 </resources>

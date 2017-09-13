@@ -25,7 +25,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Notification"
-            android:label="@string/title_activity_notification"
+            android:label="การแจ้งเตือน"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Alarm"
+            android:label="@string/title_activity_alarm"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
