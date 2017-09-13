@@ -7,9 +7,9 @@
     <item
         android:id="@+id/set_notification"
         android:orderInCategory="1"
-        android:title="@string/notification" />
+        android:title="@string/title_activity_notification" />
     <item
         android:id="@+id/set_noti_sound"
         android:orderInCategory="1"
-        android:title="@string/noti_sound" />
+        android:title="@string/title_activity_alarm" />
 </menu>
