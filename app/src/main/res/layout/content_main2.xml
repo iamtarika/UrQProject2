@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.jnstar.urqproject.Main2Activity"
+    tools:showIn="@layout/activity_main2"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:id="@+id/store"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="@string/store"
+            android:textAppearance="@style/name_stores" />
+
+        <TextView
+            android:id="@+id/name_store"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XXXXXXX"
+            android:textAppearance="@style/name_stores" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50sp"
+        android:layout_marginTop="40dp"
+        android:text="คิวของคุณ"
+        android:textColor="@color/default_text"
+        android:textSize="16sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/num_queue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="127"
+            android:textAppearance="@style/num_q"
+            android:layout_marginTop="15sp"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:text="จำนวนคิวรอ :"
+                android:textAppearance="@style/text_size20" />
+
+            <TextView
+                android:id="@+id/remain_q"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textAppearance="@style/text_size20" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="คน"
+                android:textAppearance="@style/text_size20"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:text="รอคิวประมาณ :"
+                android:textAppearance="@style/text_size20" />
+
+            <TextView
+                android:id="@+id/waiting_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:textAppearance="@style/text_size20" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="นาที"
+                android:textAppearance="@style/text_size20" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="40dp">
+
+        <Button
+            android:id="@+id/edit_button"
+            android:layout_width="130dp"
+            android:layout_height="55dp"
+            style="@style/edit_button"
+            android:text="แก้ไข"
+            />
+
+        <Button
+            android:id="@+id/decline_button"
+            android:layout_width="130dp"
+            android:layout_height="55dp"
+            style="@style/cancel_button"
+            android:text="ปฏิเสธคิว"
+            android:layout_marginLeft="20dp"
+            />
+    </LinearLayout>
+
+
+
+</LinearLayout>

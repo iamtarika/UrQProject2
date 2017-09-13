@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">UrQ</string>
+    <string name="store">ร้าน</string>
+    <string name="edit">แก้ไข</string>
+    <string name="setting">ตั้งค่า</string>
+    <string name="notification">การแจ้งเตือน</string>
+    <string name="noti_sound">เสียงแจ้งเตือน</string>
+    <string name="title_activity_notification">Notification</string>
+
+
+</resources>

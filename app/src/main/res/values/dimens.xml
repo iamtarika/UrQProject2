@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="text_size18">18sp</dimen>
+    <dimen name="name_stores">30sp</dimen>
+    <dimen name="num_q">110dp</dimen>
+    <dimen name="text_size20">20sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>
