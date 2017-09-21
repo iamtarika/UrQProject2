@@ -59,7 +59,11 @@
         <item name="android:textColor">@color/text_button</item>
         <item name="android:backgroundTint">@color/edit_button</item>
     </style>
-
+    <style name="save_button">
+        <item name="android:textSize">@dimen/text_size18</item>
+        <item name="android:textColor">@color/text_button</item>
+        <item name="android:backgroundTint">@color/save_button</item>
+    </style>
     <style name="topic_title">
         <item name="android:textSize">@dimen/text_size20</item>
         <item name="android:textColor">@color/topic_color</item>
@@ -69,6 +73,5 @@
         <item name="android:textSize">@dimen/text_size15</item>
         <item name="android:textColor">@color/detail_color</item>
     </style>
-
 
 </resources>

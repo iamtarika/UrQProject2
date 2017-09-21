@@ -5,6 +5,7 @@
     <string name="setting">ตั้งค่า</string>
     <string name="title_activity_notification">การแจ้งเตือน</string>
     <string name="title_activity_alarm">เสียงแจ้งเตือน</string>
+    <string name="title_activity_fill_information">กรอกข้อมูลด้วยตนเอง</string>
 
 
 </resources>
