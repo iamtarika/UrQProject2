@@ -14,14 +14,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp">
-        <TextView
 
+        <TextView
+            android:id="@+id/tv_specify_q"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="กรุณาระบุคิวของคุณ"
-            android:textSize="35sp"
             android:textColor="#000000"
-            />
+            android:textSize="50sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <LinearLayout
