@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.jnstar.urqproject.FillInformation"
+    tools:showIn="@layout/activity_edit"
+    android:orientation="vertical"
+
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="243dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="หมายเลขคิว"
+            android:textAppearance="@style/default_text"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="30dp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="14"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="80dp"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.08"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="25dp"
+            android:text="สถานที่"
+            android:textAppearance="@style/default_text" />
+
+        <Spinner
+            android:id="@+id/sp_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="25dp"
+            android:layout_weight="0.60" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_edit_save"
+            style="@style/save_button"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:text="บันทึก" />
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="55dp" />
+        <Button
+            android:id="@+id/btn_edit_cancle"
+            style="@style/cancel_button"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:text="ยกเลิก" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

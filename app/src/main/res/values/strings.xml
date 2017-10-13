@@ -6,6 +6,7 @@
     <string name="title_activity_notification">การแจ้งเตือน</string>
     <string name="title_activity_alarm">เสียงแจ้งเตือน</string>
     <string name="title_activity_fill_information">กรอกข้อมูลด้วยตนเอง</string>
+    <string name="title_activity_edit">Edit</string>
 
 
 </resources>
