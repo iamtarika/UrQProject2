@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/UrQProject.iml" filepath="$PROJECT_DIR$/UrQProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/UrQProject2.iml" filepath="$PROJECT_DIR$/UrQProject2.iml" />
+      <module fileurl="file://C:\Users\MSI\TestProject_2\UrQProject\UrQProject2.iml" filepath="C:\Users\MSI\TestProject_2\UrQProject\UrQProject2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

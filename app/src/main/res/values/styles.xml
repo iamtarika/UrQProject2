@@ -22,6 +22,11 @@
         <item name="android:textColor">@color/default_text</item>
     </style>
 
+    <style name="vague_text">
+        <item name="android:textSize">@dimen/text_size17</item>
+        <item name="android:textColor">@color/vague_text</item>
+    </style>
+
     <style name="name_stores">
         <item name="android:textSize">@dimen/name_stores</item>
         <item name="android:textColor">@color/name_stores</item>
@@ -66,6 +71,12 @@
         <item name="android:backgroundTint">@color/save_button</item>
     </style>
 
+    <style name="addnumber_buttom">
+        <item name="android:background">@color/addnumber_button</item>
+        <item name="android:textColor">@color/text_button</item>
+
+    </style>
+
     <style name="topic_title">
         <item name="android:textSize">@dimen/text_size20</item>
         <item name="android:textColor">@color/topic_color</item>
@@ -75,5 +86,9 @@
         <item name="android:textSize">@dimen/text_size15</item>
         <item name="android:textColor">@color/detail_color</item>
     </style>
+
+
+
+
 
 </resources>
