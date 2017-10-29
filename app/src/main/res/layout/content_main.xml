@@ -38,6 +38,7 @@
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:text="กรอกข้อมูลด้วยตนเอง"
+            android:onClick="clickButtonEnter"
             android:textAppearance="@style/text_size20"
             style="@style/addnumber_buttom" />
 

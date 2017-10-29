@@ -13,12 +13,30 @@
 
 
     <TextView
+        android:id="@+id/tv_location_fill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ระบุสถานที่"
+        android:textAppearance="@style/default_text"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"/>
+
+    <EditText
+        android:id="@+id/et_location_q"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:hint="กรุณากรอกชื่อสถานที่ที่เข้ารับบริการ"
+        android:inputType="text|number"
+        android:textColorLink="@color/colorPrimaryDark" />
+
+    <TextView
         android:id="@+id/tv_num_q"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="หมายเลขคิว"
         android:textAppearance="@style/default_text"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"/>
 
     <EditText
@@ -31,10 +49,14 @@
         android:textColorLink="@color/colorPrimaryDark" />
 
     <Button
+        android:id="@+id/btn_fill_save"
         android:layout_width="150dp"
         android:layout_height="55dp"
         android:text="บันทึก"
+        android:onClick="clickButtonfillInformation"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         style="@style/save_button" />
+
+
 </LinearLayout>

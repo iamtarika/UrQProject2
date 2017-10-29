@@ -1,5 +1,6 @@
 package com.example.jnstar.urqproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,4 +20,10 @@ public class Edit extends AppCompatActivity {
 
     }
 
+
+    public void onClickButtonEditSave (View v){
+        Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
+        startActivity(intent);
+
+    }
 }

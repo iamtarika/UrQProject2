@@ -1,6 +1,7 @@
 package com.example.jnstar.urqproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -17,6 +19,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     TextView tv_specify_q;
+    Button btn_fill_inform;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +32,17 @@ public class MainActivity extends AppCompatActivity {
         Typeface tf_1=Typeface.createFromAsset(getAssets(),"fonts/CmPrasanmit.ttf");
         tv_specify_q.setTypeface(tf_1);
 
+        btn_fill_inform = (Button)findViewById(R.id.fill_inform);
+
     }
 
+   public void clickButtonEnter (View v){
+        if(v == btn_fill_inform){
+            Intent intent = new Intent(getApplicationContext(),FillInformation.class);
+            startActivity(intent);
+        }
+
+   }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
