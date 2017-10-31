@@ -19,13 +19,13 @@ import static com.example.jnstar.urqproject.R.array.planets_array;
 public class Notification extends AppCompatActivity {
 
     Switch sw_alarm , sw_notification;
-
+    TextView tv_notification_setting;
     Spinner sp;
     String format[] = {"ทุกคิว", "จำนวนที่กำหนด", "ก่อนระยะเวลาที่กำหนด"};
     ArrayAdapter<String> adapter;
     public int temp   = 0;
     public int temp_1   = 0;
-    TextView show;
+
 
     Spinner sp_2;
     String format_2[] = {" 5 นาที", "10 นาที" , "20 นาที", "30 นาที" ,"60 นาที"};
@@ -46,9 +46,10 @@ public class Notification extends AppCompatActivity {
         sw_alarm = (Switch)findViewById(R.id.sw_alarm);
         sw_notification =(Switch)findViewById(R.id.sw_notification);
 
+        tv_notification_setting =(TextView)findViewById(R.id.tv_notification_setting);
+        tv_notification_setting.setTextColor(Color.parseColor("#cac8ca"));
 
         sp = (Spinner) findViewById(R.id.sp_setting);
-        show = (TextView) findViewById(R.id.tv_show);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, format);
         sp.setAdapter(adapter);
         sp.setEnabled(false);
@@ -89,12 +90,14 @@ public class Notification extends AppCompatActivity {
                     ed_add_num.setEnabled(true);
                     tv_detail_2.setTextColor(Color.parseColor("#000000"));
                     sp_2.setEnabled(true);
+                    tv_notification_setting.setTextColor(Color.parseColor("#000000"));
                 }else{
                     sp.setEnabled(false);
                     tv_detail_1.setTextColor(Color.parseColor("#cac8ca"));
                     ed_add_num.setEnabled(false);
                     tv_detail_2.setTextColor(Color.parseColor("#cac8ca"));
                     sp_2.setEnabled(false);
+                    tv_notification_setting.setTextColor(Color.parseColor("#cac8ca"));
                 }
             }
         });
@@ -122,7 +125,7 @@ public class Notification extends AppCompatActivity {
                         sp_2.setVisibility(View.VISIBLE);         // sp2
                     break; //ก่อนเวลาที่กำหนด
                 }
-                show.setText(Integer.toString(temp));
+
 
             }
 
@@ -144,7 +147,7 @@ public class Notification extends AppCompatActivity {
                     case 3: temp_1 = 3;   break;
                     case 4: temp_1 = 4;   break;
                 }
-                show.setText(Integer.toString(temp));
+
             }
 
             @Override

@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.jnstar.urqproject.MainActivity">
 
+    <item
+        android:id="@+id/item_sound"
+        android:icon="@drawable/ic_geadr_whitw"
+        android:title="item sound setting"
+        app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/set_notification"
-        android:orderInCategory="1"
-        android:title="@string/title_activity_notification" />
-    <item
-        android:id="@+id/set_noti_sound"
-        android:orderInCategory="1"
-        android:title="@string/title_activity_alarm" />
+
+
 </menu>

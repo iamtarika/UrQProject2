@@ -22,6 +22,8 @@
         <item name="android:textColor">@color/default_text</item>
     </style>
 
+
+
     <style name="verify_text">
         <item name="android:textSize">@dimen/text_size17</item>
         <item name="android:textColor">@color/verify_text</item>
