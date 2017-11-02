@@ -16,19 +16,22 @@
         android:id="@+id/tv_location_fill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ระบุสถานที่"
-        android:textAppearance="@style/default_text"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="30dp"/>
-
-    <EditText
-        android:id="@+id/et_location_q"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:hint="กรุณากรอกชื่อสถานที่ที่เข้ารับบริการ"
-        android:inputType="text|number"
-        android:textColorLink="@color/colorPrimaryDark" />
+        android:layout_marginTop="50dp"
+        android:text="ระบุสถานที่"
+        android:textAppearance="@style/default_text" />
+
+    <Spinner
+        android:id="@+id/sp_location_q"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="30sp"
+        android:layout_marginLeft="30sp"
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+
+    />
+
 
     <TextView
         android:id="@+id/tv_num_q"
@@ -41,11 +44,12 @@
 
     <EditText
         android:id="@+id/et_num_q"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
         android:hint="กรุณากรอกหมายเลขคิวของคุณ"
         android:inputType="number"
+        android:layout_marginRight="30sp"
+        android:layout_marginLeft="30sp"
         android:textColorLink="@color/colorPrimaryDark" />
 
     <Button

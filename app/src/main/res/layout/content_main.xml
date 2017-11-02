@@ -12,23 +12,45 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp">
 
         <TextView
             android:id="@+id/tv_specify_q"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="กรุณาระบุคิวของคุณ"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:text="ไม่มีรายการคิวที่ต้องแจ้งเตือน หากต้องการ"
             android:textColor="#000000"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+            android:textSize="30sp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="2dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_specify_q_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:text="เพิ่มรายการแจ้งเตือน กรุณากดปุ่ม"
+            android:textColor="#000000"
+            android:textSize="20sp"
+             />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -37,7 +59,7 @@
             android:id="@+id/fill_inform"
             android:layout_width="300dp"
             android:layout_height="60dp"
-            android:text="กรอกข้อมูลด้วยตนเอง"
+            android:text="เพิ่มรายการแจ้งเตือน"
             android:onClick="clickButtonEnter"
             android:textAppearance="@style/text_size20"
             style="@style/addnumber_buttom" />

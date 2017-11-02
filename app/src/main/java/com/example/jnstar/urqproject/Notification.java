@@ -28,7 +28,7 @@ public class Notification extends AppCompatActivity {
 
 
     Spinner sp_2;
-    String format_2[] = {" 5 นาที", "10 นาที" , "20 นาที", "30 นาที" ,"60 นาที"};
+    String format_2[] = {"5 นาที", "10 นาที" , "20 นาที", "30 นาที" ,"60 นาที"};
     ArrayAdapter<String> adapter_time;
 
     EditText ed_add_num;

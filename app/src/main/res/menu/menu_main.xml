@@ -3,11 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.jnstar.urqproject.MainActivity">
 
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_action_search"
+        android:title="item_action_search"
+        app:showAsAction="ifRoom"
+        app:actionViewClass="android.widget.Search" />
+
     <item
         android:id="@+id/item_sound"
         android:icon="@drawable/ic_geadr_whitw"
         android:title="item sound setting"
         app:showAsAction="ifRoom" />
+
 
 
 
