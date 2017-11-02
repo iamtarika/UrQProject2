@@ -30,6 +30,8 @@ public class Main2Activity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         edit_button = (Button)findViewById(R.id.edit_button);
         decline_button = (Button)findViewById(R.id.decline_button);
 
@@ -88,7 +90,12 @@ public class Main2Activity extends AppCompatActivity {
         if(id == R.id.item_sound){
             Intent intent = new Intent(getApplicationContext(),Notification.class);
             startActivity(intent);
+        }else if(id == android.R.id.home){
+            finish();
+            //onBackPressed();
+            //return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         tv_specify_q=(TextView)findViewById(R.id.tv_specify_q);
         Typeface tf_1=Typeface.createFromAsset(getAssets(),"fonts/CmPrasanmit.ttf");
         tv_specify_q.setTypeface(tf_1);

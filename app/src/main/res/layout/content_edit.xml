@@ -50,13 +50,17 @@
             android:text="สถานที่"
             android:textAppearance="@style/default_text" />
 
-        <Spinner
-            android:id="@+id/sp_location"
-            android:layout_width="wrap_content"
+
+        <TextView
+            android:id="@+id/tv_edit_location"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
+            android:layout_marginRight="50dp"
             android:layout_marginTop="25dp"
-            android:layout_weight="0.60" />
+            android:layout_weight="0.60"
+            android:text="ร้าน412มีทุกอย่างเด้อ"
+            android:textSize="18dp"/>
 
     </LinearLayout>
 
