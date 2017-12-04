@@ -79,7 +79,7 @@ public class Main2Activity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+        getMenuInflater().inflate(R.menu.menu_blank,menu);
         return super.onCreateOptionsMenu(menu);
         //  return true;
     }
@@ -91,7 +91,8 @@ public class Main2Activity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(),Notification.class);
             startActivity(intent);
         }else if(id == android.R.id.home){
-            finish();
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
             //onBackPressed();
             //return true;
         }

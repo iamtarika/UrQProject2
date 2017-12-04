@@ -7,18 +7,7 @@
     <string name="title_activity_alarm">เสียงแจ้งเตือน</string>
     <string name="title_activity_fill_information">กรอกข้อมูลด้วยตนเอง</string>
     <string name="title_activity_edit">Edit</string>
-
-
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
-    </string-array>
+    <string name="title_activity_search_store">SearchStore</string>
 
 
 </resources>

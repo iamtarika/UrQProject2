@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import static com.example.jnstar.urqproject.R.array.planets_array;
+
 
 public class Notification extends AppCompatActivity {
 
@@ -167,7 +167,7 @@ public class Notification extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+        getMenuInflater().inflate(R.menu.menu_blank,menu);
         return super.onCreateOptionsMenu(menu);
 
         //  return true;
@@ -180,6 +180,10 @@ public class Notification extends AppCompatActivity {
         if(id == R.id.item_sound){
             Intent intent = new Intent(getApplicationContext(),Notification.class);
             startActivity(intent);
+        }else if(id == android.R.id.home){
+        finish();
+        //onBackPressed();
+        //return true;
         }
         return super.onOptionsItemSelected(item);
 

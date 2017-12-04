@@ -23,7 +23,6 @@
     </style>
 
 
-
     <style name="verify_text">
         <item name="android:textSize">@dimen/text_size17</item>
         <item name="android:textColor">@color/verify_text</item>
@@ -79,10 +78,10 @@
         <item name="android:backgroundTint">@color/save_button</item>
     </style>
 
-    <style name="addnumber_buttom">
-        <item name="android:background">@color/addnumber_button</item>
+    <style name="addnumber_button">
+        <item name="android:textSize">@dimen/text_size18</item>
         <item name="android:textColor">@color/text_button</item>
-
+        <item name="android:backgroundTint">@color/addnumber_button</item>
     </style>
 
     <style name="topic_title">
@@ -94,9 +93,6 @@
         <item name="android:textSize">@dimen/text_size15</item>
         <item name="android:textColor">@color/detail_color</item>
     </style>
-
-
-
 
 
 </resources>
