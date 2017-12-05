@@ -13,39 +13,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:orientation="vertical"
         android:layout_marginTop="50dp">
 
         <TextView
             android:id="@+id/tv_specify_q"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:text="ไม่มีรายการคิวที่ต้องแจ้งเตือน หากต้องการ"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="ไม่มีรายการคิวที่ต้องแจ้งเตือน หากต้องการเพิ่มรายการแจ้งเตือน กรุณากดปุ่ม"
+            android:textStyle="bold"
             android:textColor="#000000"
             android:textSize="30sp"
             />
 
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="2dp"
-        >
-
-        <TextView
-            android:id="@+id/tv_specify_q_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:text="เพิ่มรายการแจ้งเตือน กรุณากดปุ่ม"
-            android:textColor="#000000"
-            android:textSize="20sp"
-             />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,12 +43,12 @@
 
         <Button
             android:id="@+id/fill_inform"
+            style="@style/addnumber_button"
             android:layout_width="300dp"
             android:layout_height="60dp"
-            android:text="เพิ่มรายการแจ้งเตือน"
             android:onClick="clickButtonEnter"
-            android:textAppearance="@style/text_size20"
-            style="@style/addnumber_buttom" />
+            android:text="เพิ่มรายการแจ้งเตือน"
+            android:textAppearance="@style/text_size20" />
 
     </LinearLayout>
 
