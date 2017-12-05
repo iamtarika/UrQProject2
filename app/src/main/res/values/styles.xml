@@ -79,7 +79,7 @@
     </style>
 
     <style name="addnumber_button">
-        <item name="android:textSize">@dimen/text_size18</item>
+        <item name="android:textSize">@dimen/text_size25</item>
         <item name="android:textColor">@color/text_button</item>
         <item name="android:backgroundTint">@color/addnumber_button</item>
     </style>
