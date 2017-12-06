@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,7 @@ import java.util.List;
 public class FillInformation extends AppCompatActivity {
 
     Button btn_fill_save;
+    EditText et_num_q;
     private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
 
     @Override
@@ -38,8 +40,10 @@ public class FillInformation extends AppCompatActivity {
 
 
         btn_fill_save =(Button)findViewById(R.id.btn_fill_save);
+        et_num_q =(EditText)findViewById(R.id.et_num_q);
 
-        mRootRef.child("shop").addValueEventListener(new ValueEventListener() {
+
+        mRootRef.child("shop").child("nameShop").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Is better to use a List, because you don't know the size
@@ -47,15 +51,15 @@ public class FillInformation extends AppCompatActivity {
                 // initialize the array
                 final List<String> shop = new ArrayList<String>();
 
-                for (DataSnapshot areaSnapshot: dataSnapshot.getChildren()) {
-                    String shopName = areaSnapshot.child("shopName").getValue(String.class);
+                for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
+                    String shopName = shopSnapshot.getKey().toString();
                     shop.add(shopName);
                 }
 
                 Spinner areaSpinner = (Spinner) findViewById(R.id.sp_location_q);
-                ArrayAdapter<String> areasAdapter = new ArrayAdapter<String>(FillInformation.this, android.R.layout.simple_spinner_item, shop);
-                areasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                areaSpinner.setAdapter(areasAdapter);
+                ArrayAdapter<String> shopsAdapter = new ArrayAdapter<String>(FillInformation.this, android.R.layout.simple_spinner_item, shop);
+                shopsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                areaSpinner.setAdapter(shopsAdapter);
             }
 
             @Override
@@ -65,16 +69,21 @@ public class FillInformation extends AppCompatActivity {
         });
 
 
+
+
     }
 
+
    public void clickButtonfillInformation (View v){
-       if(v == btn_fill_save){
+       if(v == btn_fill_save ){
 
            Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
            startActivity(intent);
+
        }
 
    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -88,6 +97,8 @@ public class FillInformation extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 
