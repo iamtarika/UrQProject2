@@ -43,9 +43,9 @@
 
         <Button
             android:id="@+id/fill_inform"
-            style="@style/addnumber_button"
+            style="@style/add_list_q"
             android:layout_width="300dp"
-            android:layout_height="60dp"
+            android:layout_height="65dp"
             android:onClick="clickButtonEnter"
             android:text="เพิ่มรายการแจ้งเตือน" />
 
