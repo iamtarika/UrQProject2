@@ -99,6 +99,17 @@
     <style name="spinner_style_fill">
         <item name="colorControlActivated">@color/addnumber_button</item>
     </style>
+    <style name="switch_style" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/save_button</item>
+        <item name="colorSwitchThumbNormal">#f1f1f1</item>
+        <item name="android:colorForeground">#42221f1f</item>
+    </style>
+    <style name="et_style_noti" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlActivated">@color/save_button</item>
+    </style>
 
+    <style name="spinner_style_noti">
+        <item name="colorControlActivated">@color/save_button</item>
+    </style>
 
 </resources>
