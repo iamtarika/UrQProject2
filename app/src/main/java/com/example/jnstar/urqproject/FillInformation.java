@@ -10,10 +10,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,11 +26,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 public class FillInformation extends AppCompatActivity {
 
     Button btn_fill_save;
     EditText et_num_q;
     private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+
+    Spinner areaSpinner;
+    int temp=0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,8 @@ public class FillInformation extends AppCompatActivity {
 
         btn_fill_save =(Button)findViewById(R.id.btn_fill_save);
         et_num_q =(EditText)findViewById(R.id.et_num_q);
+        areaSpinner = (Spinner) findViewById(R.id.sp_location_q);
+
 
 
         mRootRef.child("shop").child("nameShop").addValueEventListener(new ValueEventListener() {
@@ -56,7 +67,7 @@ public class FillInformation extends AppCompatActivity {
                     shop.add(shopName);
                 }
 
-                Spinner areaSpinner = (Spinner) findViewById(R.id.sp_location_q);
+
                 ArrayAdapter<String> shopsAdapter = new ArrayAdapter<String>(FillInformation.this, android.R.layout.simple_spinner_item, shop);
                 shopsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 areaSpinner.setAdapter(shopsAdapter);
@@ -68,6 +79,25 @@ public class FillInformation extends AppCompatActivity {
             }
         });
 
+        areaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0: temp = 0;   break;
+                    case 1: temp = 1;   break;
+                }
+
+              //  Toast.makeText(getApplicationContext(), temp+"" ,Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
 
 
 
@@ -75,12 +105,15 @@ public class FillInformation extends AppCompatActivity {
 
 
    public void clickButtonfillInformation (View v){
-       if(v == btn_fill_save ){
+       if( v == btn_fill_save &&et_num_q.getText().toString().length()!=0){
 
            Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
+           intent.putExtra("location", temp);
+           intent.putExtra("myNumber", et_num_q.getText().toString());
            startActivity(intent);
 
        }
+       Toast.makeText(getApplicationContext(), "กรุณาระบุเลขคิว" ,Toast.LENGTH_SHORT).show();
 
    }
 

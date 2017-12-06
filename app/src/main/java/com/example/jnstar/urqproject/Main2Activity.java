@@ -10,11 +10,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -24,6 +32,13 @@ public class Main2Activity extends AppCompatActivity {
      Button btn_dialog_clear;
      Button btn_dialog_cancel;
 
+     TextView num_queqe;
+     String num_text;
+     int temp;
+
+     TextView name_store;
+     private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+     int i=-1;
 
 
 
@@ -39,13 +54,80 @@ public class Main2Activity extends AppCompatActivity {
         edit_button = (Button)findViewById(R.id.edit_button);
         decline_button = (Button)findViewById(R.id.decline_button);
 
+        num_queqe =(TextView)findViewById(R.id.num_queue);
+        temp = getIntent().getExtras().getInt("temp");
+        num_text =getIntent().getExtras().getString("myNumber");
+        num_queqe.setText(num_text);
+
+
+
+        name_store =(TextView)findViewById(R.id.name_store);
+
+        if(temp==0){
+            mRootRef.child("shop").child("nameShop").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                  //  int questionCount = (int) dataSnapshot.getChildrenCount();
+                   // name_store.setText(""+questionCount);
+
+                    for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
+                        if (i == 0) {
+
+                            String shopName = shopSnapshot.getKey().toString();
+                            name_store.setText(shopName);
+                        }
+                        i++;
+                    }
+                    i=-1;
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+        }else{
+            mRootRef.child("shop").child("nameShop").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    //  int questionCount = (int) dataSnapshot.getChildrenCount();
+                    // name_store.setText(""+questionCount);
+
+                    for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
+                        if (i == 1) {
+
+                            String shopName = shopSnapshot.getKey().toString();
+                            name_store.setText(shopName);
+                        }
+                        i++;
+                    }
+                    i=-1;
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),Edit.class);
+                intent.putExtra("location", temp);
+                intent.putExtra("myNumber", num_text);
                 startActivity(intent);
             }
         });
+
+
+
 
         decline_button.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -63,6 +145,8 @@ public class Main2Activity extends AppCompatActivity {
                     public void onClick(View view) {
                         dialog.cancel();
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.putExtra("location", temp);
+                        intent.putExtra("myNumber", num_text);
                         startActivity(intent);
                     }
                 });
@@ -93,9 +177,13 @@ public class Main2Activity extends AppCompatActivity {
         int id = item.getItemId();
         if(id == R.id.item_sound){
             Intent intent = new Intent(getApplicationContext(),Notification.class);
+            intent.putExtra("location", temp);
+            intent.putExtra("myNumber", num_text);
             startActivity(intent);
         }else if(id == android.R.id.home){
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            intent.putExtra("location", temp);
+            intent.putExtra("myNumber", num_text);
             startActivity(intent);
             //onBackPressed();
             //return true;

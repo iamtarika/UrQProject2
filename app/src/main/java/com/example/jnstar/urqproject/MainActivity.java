@@ -34,13 +34,14 @@ public class MainActivity extends AppCompatActivity {
         tv_specify_q=(TextView)findViewById(R.id.tv_specify_q);
         Typeface tf_1=Typeface.createFromAsset(getAssets(),"fonts/CmPrasanmit.ttf");
         tv_specify_q.setTypeface(tf_1);
-
         btn_fill_inform = (Button)findViewById(R.id.fill_inform);
+
+
 
     }
 
    public void clickButtonEnter (View v){
-        if(v == btn_fill_inform){
+        if(v == btn_fill_inform ){
             Intent intent = new Intent(getApplicationContext(),FillInformation.class);
             startActivity(intent);
         }
