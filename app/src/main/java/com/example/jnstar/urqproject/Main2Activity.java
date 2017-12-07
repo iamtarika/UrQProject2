@@ -77,27 +77,12 @@ public class Main2Activity extends AppCompatActivity {
 
                     for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
                         if (i == 0) {
-
                             String shopName = shopSnapshot.getKey().toString();
                             name_store.setText(shopName);
-
-                            String status = dataSnapshot.child(shopName).child("numQ").child(num_text).child("status").getValue().toString();
-                            String waitTime = dataSnapshot.child(shopName).child("numQ").child(num_text).child("timeRemain").getValue().toString();
-
-                            if(status=="finish"){
-                                remain_q.setText("0");
-                            }else if(status=="doing"){
-                                remain_q.setText("1");
-                            }
-
-                            waiting_time.setText(waitTime);
-
                         }
                         i++;
                     }
                     i=-1;
-
-
                 }
 
                 @Override
@@ -121,18 +106,6 @@ public class Main2Activity extends AppCompatActivity {
 
                             String shopName = shopSnapshot.getKey().toString();
                             name_store.setText(shopName);
-
-                            String status = dataSnapshot.child(shopName).child("numQ").child(num_text).child("status").getValue().toString();
-                            String waitTime = dataSnapshot.child(shopName).child("numQ").child(num_text).child("timeRemain").getValue().toString();
-
-                            if(status=="finish"){
-                                remain_q.setText("0");
-                            }else if(status=="doing"){
-                                remain_q.setText("1");
-                            }
-
-                            waiting_time.setText(waitTime);
-
 
                         }
                         i++;
