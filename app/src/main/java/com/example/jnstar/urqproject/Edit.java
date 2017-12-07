@@ -106,9 +106,10 @@ public class Edit extends AppCompatActivity {
             intent.putExtra("myNumber", num_text);
             startActivity(intent);
         }else{
+            final EditText num_new =(EditText)findViewById(R.id.num_edit);
             Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
             intent.putExtra("location", temp);
-            intent.putExtra("myNumber", num_edit.getText().toString());
+            intent.putExtra("myNumber", num_new.getText().toString());
             startActivity(intent);
         }
 
