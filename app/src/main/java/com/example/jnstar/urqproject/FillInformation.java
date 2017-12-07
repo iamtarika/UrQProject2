@@ -112,8 +112,11 @@ public class FillInformation extends AppCompatActivity {
            intent.putExtra("myNumber", et_num_q.getText().toString());
            startActivity(intent);
 
+       }else{
+
+           Toast.makeText(getApplicationContext(), "กรุณาระบุเลขคิว" ,Toast.LENGTH_SHORT).show();
        }
-       Toast.makeText(getApplicationContext(), "กรุณาระบุเลขคิว" ,Toast.LENGTH_SHORT).show();
+
 
    }
 

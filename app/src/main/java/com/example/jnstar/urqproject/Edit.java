@@ -12,12 +12,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class Edit extends AppCompatActivity {
 
     EditText num_edit ;
     String num_text;
     int temp;
-
+    TextView tv_edit_location;
+    private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    int i =-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +40,61 @@ public class Edit extends AppCompatActivity {
         temp = getIntent().getExtras().getInt("temp");
         num_text = getIntent().getExtras().getString("myNumber");
         num_edit.setHint(num_text);
+        tv_edit_location = (TextView)findViewById(R.id.tv_edit_location);
+
+
+        if(temp==0){
+            mRootRef.child("shop").child("nameShop").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    //  int questionCount = (int) dataSnapshot.getChildrenCount();
+                    // name_store.setText(""+questionCount);
+
+                    for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
+                        if (i == 0) {
+
+                            String shopName = shopSnapshot.getKey().toString();
+                            tv_edit_location.setText(shopName);
+                        }
+                        i++;
+                    }
+                    i=-1;
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+        }else{
+            mRootRef.child("shop").child("nameShop").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    //  int questionCount = (int) dataSnapshot.getChildrenCount();
+                    // name_store.setText(""+questionCount);
+
+                    for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
+                        if (i == 1) {
+
+                            String shopName = shopSnapshot.getKey().toString();
+                            tv_edit_location.setText(shopName);
+                        }
+                        i++;
+                    }
+                    i=-1;
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
 
     }
 

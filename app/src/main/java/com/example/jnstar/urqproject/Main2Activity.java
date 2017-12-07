@@ -40,6 +40,9 @@ public class Main2Activity extends AppCompatActivity {
      private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
      int i=-1;
 
+     TextView remain_q;
+     TextView waiting_time;
+
 
 
     @Override
@@ -58,10 +61,11 @@ public class Main2Activity extends AppCompatActivity {
         temp = getIntent().getExtras().getInt("temp");
         num_text =getIntent().getExtras().getString("myNumber");
         num_queqe.setText(num_text);
-
+        remain_q =(TextView)findViewById(R.id.remain_q);
 
 
         name_store =(TextView)findViewById(R.id.name_store);
+        waiting_time =(TextView)findViewById(R.id.waiting_time);
 
         if(temp==0){
             mRootRef.child("shop").child("nameShop").addValueEventListener(new ValueEventListener() {
@@ -76,10 +80,23 @@ public class Main2Activity extends AppCompatActivity {
 
                             String shopName = shopSnapshot.getKey().toString();
                             name_store.setText(shopName);
+
+                            String status = dataSnapshot.child(shopName).child("numQ").child(num_text).child("status").getValue().toString();
+                            String waitTime = dataSnapshot.child(shopName).child("numQ").child(num_text).child("timeRemain").getValue().toString();
+
+                            if(status=="finish"){
+                                remain_q.setText("0");
+                            }else if(status=="doing"){
+                                remain_q.setText("1");
+                            }
+
+                            waiting_time.setText(waitTime);
+
                         }
                         i++;
                     }
                     i=-1;
+
 
                 }
 
@@ -88,6 +105,8 @@ public class Main2Activity extends AppCompatActivity {
 
                 }
             });
+
+
 
         }else{
             mRootRef.child("shop").child("nameShop").addValueEventListener(new ValueEventListener() {
@@ -102,6 +121,19 @@ public class Main2Activity extends AppCompatActivity {
 
                             String shopName = shopSnapshot.getKey().toString();
                             name_store.setText(shopName);
+
+                            String status = dataSnapshot.child(shopName).child("numQ").child(num_text).child("status").getValue().toString();
+                            String waitTime = dataSnapshot.child(shopName).child("numQ").child(num_text).child("timeRemain").getValue().toString();
+
+                            if(status=="finish"){
+                                remain_q.setText("0");
+                            }else if(status=="doing"){
+                                remain_q.setText("1");
+                            }
+
+                            waiting_time.setText(waitTime);
+
+
                         }
                         i++;
                     }
