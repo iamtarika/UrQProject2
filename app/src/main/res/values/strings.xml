@@ -8,6 +8,7 @@
     <string name="title_activity_fill_information">กรอกข้อมูลด้วยตนเอง</string>
     <string name="title_activity_edit">Edit</string>
     <string name="title_activity_search_store">SearchStore</string>
+    <string name="title_activity_main_list">MainListActivity</string>
 
 
 </resources>
