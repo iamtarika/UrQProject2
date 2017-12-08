@@ -24,7 +24,7 @@
 
 
     <style name="verify_text">
-        <item name="android:textSize">@dimen/text_size17</item>
+        <item name="android:textSize">@dimen/text_size22</item>
         <item name="android:textColor">@color/verify_text</item>
 
     </style>
@@ -55,25 +55,25 @@
     </style>
 
     <style name="cancel_button">
-        <item name="android:textSize">@dimen/text_size18</item>
+        <item name="android:textSize">@dimen/text_size22</item>
         <item name="android:textColor">@color/text_button</item>
         <item name="android:backgroundTint">@color/cancel_button</item>
     </style>
 
     <style name="ok_button">
-        <item name="android:textSize">@dimen/text_size18</item>
+        <item name="android:textSize">@dimen/text_size22</item>
         <item name="android:textColor">@color/text_button</item>
         <item name="android:backgroundTint">@color/ok_button</item>
     </style>
 
     <style name="edit_button">
-        <item name="android:textSize">@dimen/text_size18</item>
+        <item name="android:textSize">@dimen/text_size22</item>
         <item name="android:textColor">@color/text_button</item>
         <item name="android:backgroundTint">@color/edit_button</item>
     </style>
 
     <style name="save_button">
-        <item name="android:textSize">@dimen/text_size18</item>
+        <item name="android:textSize">@dimen/text_size22</item>
         <item name="android:textColor">@color/text_button</item>
         <item name="android:backgroundTint">@color/save_button</item>
     </style>
@@ -93,23 +93,32 @@
         <item name="android:textSize">@dimen/text_size15</item>
         <item name="android:textColor">@color/detail_color</item>
     </style>
+
     <style name="et_style_fill" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorControlActivated">@color/addnumber_button</item>
     </style>
+
     <style name="spinner_style_fill">
         <item name="colorControlActivated">@color/addnumber_button</item>
     </style>
+
     <style name="switch_style" parent="Theme.AppCompat.Light">
         <item name="colorControlActivated">@color/save_button</item>
         <item name="colorSwitchThumbNormal">#f1f1f1</item>
         <item name="android:colorForeground">#42221f1f</item>
     </style>
+
     <style name="et_style_noti" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorControlActivated">@color/save_button</item>
+        <item name="android:textSize">@dimen/text_size22</item>
     </style>
 
     <style name="spinner_style_noti">
         <item name="colorControlActivated">@color/save_button</item>
+    </style>
+    <style name="MyActionBar">
+        <item name="android:height">56dp</item>
+        <item name="height">56dp</item>
     </style>
 
 </resources>

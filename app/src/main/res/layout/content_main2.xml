@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="40dp">
 
         <TextView
             android:id="@+id/store"
@@ -40,7 +40,7 @@
         android:layout_marginTop="40dp"
         android:text="คิวของคุณ"
         android:textColor="@color/default_text"
-        android:textSize="16sp" />
+        android:textSize="@dimen/text_size20" />
 
 
     <LinearLayout
@@ -53,7 +53,6 @@
             android:id="@+id/num_queue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="127"
             android:textAppearance="@style/num_q"
             android:layout_marginTop="15sp"
             />
@@ -121,12 +120,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="50dp">
 
         <Button
             android:id="@+id/edit_button"
             android:layout_width="130dp"
-            android:layout_height="55dp"
+            android:layout_height="65dp"
             style="@style/edit_button"
             android:text="แก้ไข"
             />
@@ -134,7 +133,7 @@
         <Button
             android:id="@+id/decline_button"
             android:layout_width="130dp"
-            android:layout_height="55dp"
+            android:layout_height="65dp"
             style="@style/cancel_button"
             android:text="ปฏิเสธคิว"
             android:layout_marginLeft="20dp"

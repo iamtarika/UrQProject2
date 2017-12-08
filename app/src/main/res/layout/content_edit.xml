@@ -8,11 +8,12 @@
     tools:context="com.example.jnstar.urqproject.FillInformation"
     tools:showIn="@layout/activity_edit"
     android:orientation="vertical"
-
-    android:weightSum="1">
+    android:layout_marginLeft="30dp"
+    android:layout_marginTop="40dp"
+    android:layout_marginRight="30dp">
 
     <LinearLayout
-        android:layout_width="243dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView
@@ -21,67 +22,55 @@
             android:layout_height="wrap_content"
             android:text="หมายเลขคิว"
             android:textAppearance="@style/default_text"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="30dp"/>
+           />
 
         <EditText
             android:id="@+id/num_edit"
-            android:layout_width="wrap_content"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="50dp"
-            android:inputType="number" />
+            android:layout_marginLeft="20dp"
+            android:theme="@style/et_style_noti"
+            android:inputType="number"
+            />
 
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.08"
-        android:weightSum="1">
+       >
 
         <TextView
             android:id="@+id/tv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
             android:layout_marginTop="25dp"
             android:text="สถานที่"
             android:textAppearance="@style/default_text" />
-
 
         <TextView
             android:id="@+id/tv_edit_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="25dp"
-            android:layout_weight="0.60"
             android:text="ร้าน412มีทุกอย่างเด้อ"
-            android:textSize="18dp"/>
+            android:textSize="@dimen/text_size22"/>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
 
-        android:gravity="center">
-
-        <Button
+    <Button
             android:id="@+id/btn_edit_save"
             style="@style/save_button"
             android:onClick="onClickButtonEditSave"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginRight="80dp"
+            android:layout_width="250dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
             android:text="บันทึกการเปลี่ยนแปลง" />
 
-
-    </LinearLayout>
 
 
 </LinearLayout>

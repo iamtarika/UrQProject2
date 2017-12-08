@@ -55,7 +55,6 @@
         android:textColorLink="@color/colorPrimaryDark"
         android:textSize="22sp"
         android:layout_gravity="center"
-        android:backgroundTint="@color/addnumber_button"
         android:theme="@style/et_style_fill"
         />
 
@@ -68,13 +67,5 @@
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         style="@style/add_list_q" />
-
-
-
-
-
-
-
-
 
 </LinearLayout>
