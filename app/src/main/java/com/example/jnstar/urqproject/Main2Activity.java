@@ -43,6 +43,8 @@ public class Main2Activity extends AppCompatActivity {
      TextView remain_q;
      TextView waiting_time;
 
+     String shopName;
+     int j=0;
 
 
     @Override
@@ -72,17 +74,22 @@ public class Main2Activity extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                  //  int questionCount = (int) dataSnapshot.getChildrenCount();
+                    int questionCount = (int) dataSnapshot.getChildrenCount();
                    // name_store.setText(""+questionCount);
 
                     for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
                         if (i == 0) {
-                            String shopName = shopSnapshot.getKey().toString();
+                            shopName = shopSnapshot.getKey().toString();
                             name_store.setText(shopName);
+
+
                         }
                         i++;
                     }
                     i=-1;
+
+
+
                 }
 
                 @Override
@@ -91,6 +98,55 @@ public class Main2Activity extends AppCompatActivity {
                 }
             });
 
+            mRootRef.child("shop").child("nameShop").child("ชาบูน้องแพร").child("numQ").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    j=0;
+                    for (DataSnapshot coutData: dataSnapshot.getChildren()) {
+
+                        String status = coutData.child("status").getValue().toString();
+                        String doing = "doing";
+
+                        if(status.equals(doing)){
+                            j++;
+                        }
+
+                    }
+                    //waiting_time.setText(j+"");
+
+
+                    mRootRef.child("shop").child("nameShop").child("ชาบูน้องแพร").child("CountService").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            for (DataSnapshot serviceTime: dataSnapshot.getChildren()) {
+
+                                String servicetime = serviceTime.getValue().toString();
+
+
+
+                            }
+
+
+
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
 
 
         }else{
@@ -112,6 +168,7 @@ public class Main2Activity extends AppCompatActivity {
                     }
                     i=-1;
 
+
                 }
 
                 @Override
@@ -120,6 +177,7 @@ public class Main2Activity extends AppCompatActivity {
                 }
             });
         }
+
 
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
