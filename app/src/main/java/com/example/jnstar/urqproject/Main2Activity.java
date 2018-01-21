@@ -28,9 +28,13 @@ public class Main2Activity extends AppCompatActivity {
 
      Button edit_button ;
      Button decline_button;
+     Button fill_button;
+     Button delete_button;
+
 
      Button btn_dialog_clear;
      Button btn_dialog_cancel;
+
 
      TextView num_queqe;
      String num_text;
@@ -38,13 +42,27 @@ public class Main2Activity extends AppCompatActivity {
 
      TextView name_store;
      private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-     int i=-1;
+     int i=1;
 
      TextView remain_q;
      TextView waiting_time;
 
-     String shopName;
-     int j=0;
+    int countFinishAndDoing = 0;
+
+    int countFinish = 0 ;
+    int countDoing = 0;
+    int countQ =0;
+    String countStatus = ".";
+
+        TextView textServiced;
+        TextView textShow0;
+        TextView textShow1;
+        TextView textShow2;
+        TextView textShow3;
+        TextView textShow4;
+        TextView textAdd1;
+        TextView textAdd2;
+        TextView textAdd3;
 
 
     @Override
@@ -54,13 +72,16 @@ public class Main2Activity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+     //   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         edit_button = (Button)findViewById(R.id.edit_button);
         decline_button = (Button)findViewById(R.id.decline_button);
+        fill_button = (Button)findViewById(R.id.fill_button);
+        delete_button = (Button)findViewById(R.id.delete_button);
+
 
         num_queqe =(TextView)findViewById(R.id.num_queue);
-        temp = getIntent().getExtras().getInt("temp");
+        temp = getIntent().getExtras().getInt("location");
         num_text =getIntent().getExtras().getString("myNumber");
         num_queqe.setText(num_text);
         remain_q =(TextView)findViewById(R.id.remain_q);
@@ -69,115 +90,146 @@ public class Main2Activity extends AppCompatActivity {
         name_store =(TextView)findViewById(R.id.name_store);
         waiting_time =(TextView)findViewById(R.id.waiting_time);
 
-        if(temp==0){
-            mRootRef.child("shop").child("nameShop").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    int questionCount = (int) dataSnapshot.getChildrenCount();
-                   // name_store.setText(""+questionCount);
-
-                    for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
-                        if (i == 0) {
-                            shopName = shopSnapshot.getKey().toString();
-                            name_store.setText(shopName);
-
-
-                        }
-                        i++;
-                    }
-                    i=-1;
+        textServiced = (TextView)findViewById(R.id.textServiced);
+        textAdd1 = (TextView)findViewById(R.id.textAdd1);
+        textAdd2 = (TextView)findViewById(R.id.textAdd2);
+        textAdd3 = (TextView)findViewById(R.id.textAdd3);
+        textShow0 = (TextView)findViewById(R.id.textShow0);
+        textShow1 = (TextView)findViewById(R.id.textShow1);
+        textShow2 = (TextView)findViewById(R.id.textShow2);
+        textShow3 = (TextView)findViewById(R.id.textShow3);
+        textShow4 = (TextView)findViewById(R.id.textShow4);
 
 
 
-                }
+        mRootRef.child("user").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
+                    if(temp == i){
+                        String shopName = String.valueOf(shopSnapshot.child("shopName").child("name").getValue());
+                        name_store.setText(shopName);
 
-                }
-            });
-
-            mRootRef.child("shop").child("nameShop").child("ชาบูน้องแพร").child("numQ").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    j=0;
-                    for (DataSnapshot coutData: dataSnapshot.getChildren()) {
-
-                        String status = coutData.child("status").getValue().toString();
-                        String doing = "doing";
-
-                        if(status.equals(doing)){
-                            j++;
-                        }
-
-                    }
-                    //waiting_time.setText(j+"");
+                        String statusCheck = String.valueOf(shopSnapshot.child("qNumber").child(num_text).child("status").getValue());
+                        String repeatCheck = String.valueOf(shopSnapshot.child("qNumber").child(num_text).child("repeat").getValue());
+                        String qType = String.valueOf(shopSnapshot.child("shopName").child("qType").getValue());
 
 
-                    mRootRef.child("shop").child("nameShop").child("ชาบูน้องแพร").child("CountService").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
+                        /////////////////นับจำนวณว่ามีแต่ละอันเท่าไหร่
+                        int k=1;
+                        while (!countStatus.equals("null")){
 
-                            for (DataSnapshot serviceTime: dataSnapshot.getChildren()) {
+                            countStatus = String.valueOf(shopSnapshot.child("qNumber").child(k+"").child("status").getValue());
 
-                                String servicetime = serviceTime.getValue().toString();
-
-
-
+                            if (countStatus.equals("finish")){
+                                countFinish++;
+                            }else if(countStatus.equals("doing")){
+                                countDoing++;
+                            }else if(countStatus.equals("q")){
+                                countQ++;
                             }
 
+                            if(!countStatus.equals("null")){
+                                k++;
+                            }
+                        }
+                        countFinishAndDoing = countFinish+countDoing;
 
+                        if (num_text.equals(String.valueOf(countFinishAndDoing))) {
+                            textServiced.setVisibility(View.GONE); //หมายเลขนี้ได้รับการบริการไปแล้ว
 
+                            textShow1.setVisibility(View.GONE);     //จำนวนคิวที่ต้องรอ
+                            remain_q.setVisibility(View.GONE);      // เลขคิว
+                            textShow2.setVisibility(View.GONE);     // คิว
 
+                            textShow0.setVisibility(View.VISIBLE); // ถึงคิวของคุณแล้ว
+
+                            textAdd1.setVisibility(View.GONE);    // กด เพิ่มหมายเลขคิว เพื่อทำรายการแจ้งเตือนใหม่
+                            textAdd2.setVisibility(View.GONE);    // เพิ่มหมายเลขคิว
+                            textAdd3.setVisibility(View.GONE);    // เพื่อทำรายการแจ้งเตือนใหม่
+
+                            textShow3.setVisibility(View.GONE);     // ต้องรอประมาณ
+                            waiting_time.setVisibility(View.GONE);  // เลข
+                            textShow4.setVisibility(View.GONE);     // นาที
+
+                            fill_button.setVisibility(View.GONE); // กดเพิ่มรายการ
+                            edit_button.setVisibility(View.GONE);    // แก้ไข
+                            decline_button.setVisibility(View.GONE); // ลบ
+                            delete_button.setVisibility(View.VISIBLE); //ลบรายการแจ้งเตือนนี้
+
+                        }else if(statusCheck.equals("finish")||statusCheck.equals("doing")){
+
+                            textServiced.setVisibility(View.VISIBLE); //หมายเลขนี้ได้รับการบริการไปแล้ว
+
+                            textShow1.setVisibility(View.GONE);     //จำนวนคิวที่ต้องรอ
+                            remain_q.setVisibility(View.GONE);      // เลขคิว
+                            textShow2.setVisibility(View.GONE);     // คิว
+
+                            textShow0.setVisibility(View.GONE); // ถึงคิวของคุณแล้ว
+
+                            textAdd1.setVisibility(View.VISIBLE);    // กด เพิ่มหมายเลขคิว เพื่อทำรายการแจ้งเตือนใหม่
+                            textAdd2.setVisibility(View.VISIBLE);    // เพิ่มหมายเลขคิว
+                            textAdd3.setVisibility(View.VISIBLE);    // เพื่อทำรายการแจ้งเตือนใหม่
+
+                            textShow3.setVisibility(View.GONE);     // ต้องรอประมาณ
+                            waiting_time.setVisibility(View.GONE);  // เลข
+                            textShow4.setVisibility(View.GONE);     // นาที
+
+                            fill_button.setVisibility(View.VISIBLE); // กดเพิ่มรายการ
+                            edit_button.setVisibility(View.GONE);    // แก้ไข
+                            decline_button.setVisibility(View.GONE); // ลบ
+                            delete_button.setVisibility(View.GONE); //ลบรายการแจ้งเตือนนี้
+
+                        }else if(statusCheck.equals("q")){
+
+                            textServiced.setVisibility(View.GONE); //หมายเลขนี้ได้รับการบริการไปแล้ว
+
+                            textShow1.setVisibility(View.VISIBLE);     //จำนวนคิวที่ต้องรอ
+                            remain_q.setVisibility(View.VISIBLE);      // เลขคิว
+                            textShow2.setVisibility(View.VISIBLE);     // คิว
+
+                            textShow0.setVisibility(View.GONE); // ถึงคิวของคุณแล้ว
+
+                            textAdd1.setVisibility(View.GONE);    // กด เพิ่มหมายเลขคิว เพื่อทำรายการแจ้งเตือนใหม่
+                            textAdd2.setVisibility(View.GONE);    // เพิ่มหมายเลขคิว
+                            textAdd3.setVisibility(View.GONE);    // เพื่อทำรายการแจ้งเตือนใหม่
+
+                            textShow3.setVisibility(View.GONE);     // ต้องรอประมาณ
+                            waiting_time.setVisibility(View.GONE);  // เลข
+                            textShow4.setVisibility(View.GONE);     // นาที
+
+                            fill_button.setVisibility(View.GONE); // กดเพิ่มรายการ
+                            edit_button.setVisibility(View.VISIBLE);    // แก้ไข
+                            decline_button.setVisibility(View.VISIBLE); // ลบ
+                            delete_button.setVisibility(View.GONE); //ลบรายการแจ้งเตือนนี้
+
+                            remain_q.setText(Integer.parseInt(num_text)-(countFinish+countDoing)+"");
 
                         }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-
-        }else{
-            mRootRef.child("shop").child("nameShop").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    //  int questionCount = (int) dataSnapshot.getChildrenCount();
-                    // name_store.setText(""+questionCount);
-
-                    for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
-                        if (i == 1) {
-
-                            String shopName = shopSnapshot.getKey().toString();
-                            name_store.setText(shopName);
-
-                        }
-                        i++;
                     }
-                    i=-1;
-
-
+                                    i++;
                 }
+                                    i=1;
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+            }
 
-                }
-            });
-        }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+
+
+        fill_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),FillInformation.class);
+                startActivity(intent);
+            }
+        });
 
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override

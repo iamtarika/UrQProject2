@@ -65,6 +65,25 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/textServiced"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="หมายเลขนี้ได้รับการบริการไปแล้ว"
+                android:textAppearance="@style/text_size20"
+                android:textColor="#FF0000"/>
+
+            <TextView
+                android:id="@+id/textShow0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ถึงคิวของคุณแล้ว"
+                android:textStyle="bold"
+                android:textAppearance="@style/text_size24"/>
+
+            <TextView
+                android:id="@+id/textShow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
@@ -79,10 +98,11 @@
                 android:textAppearance="@style/text_size20" />
 
             <TextView
+                android:id="@+id/textShow2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:text="คน"
+                android:text="คิว"
                 android:textAppearance="@style/text_size20"
 
                 />
@@ -91,8 +111,32 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
             <TextView
+                android:id="@+id/textAdd1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="กด"
+                android:textAppearance="@style/text_size18"
+                />
+            <TextView
+                android:id="@+id/textAdd2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=" เพิ่มหมายเลขคิว "
+                android:textAppearance="@style/text_size18"
+                android:textColor="#FED82F"/>
+            <TextView
+                android:id="@+id/textAdd3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="เพื่อทำรายการแจ้งเตือนใหม่"
+                android:textAppearance="@style/text_size18"
+                />
+            <TextView
+                android:id="@+id/textShow3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
@@ -107,6 +151,7 @@
                 android:textAppearance="@style/text_size20" />
 
             <TextView
+                android:id="@+id/textShow4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -129,6 +174,18 @@
             style="@style/edit_button"
             android:text="แก้ไข"
             />
+        <Button
+            android:id="@+id/fill_button"
+            style="@style/add_list_q"
+            android:layout_width="300dp"
+            android:layout_height="65dp"
+            android:text="เพิ่มรายการแจ้งเตือน" />
+        <Button
+            android:id="@+id/delete_button"
+            style="@style/cancel_button"
+            android:layout_width="300dp"
+            android:layout_height="65dp"
+            android:text="ลบรายการแจ้งเตือนนี้" />
 
         <Button
             android:id="@+id/decline_button"

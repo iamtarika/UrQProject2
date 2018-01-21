@@ -25,7 +25,7 @@ public class Edit extends AppCompatActivity {
     int temp;
     TextView tv_edit_location;
     private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    int i =-1;
+    int i = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,64 +37,31 @@ public class Edit extends AppCompatActivity {
 
 
         num_edit =(EditText) findViewById(R.id.num_edit);
-        temp = getIntent().getExtras().getInt("temp");
+        temp = getIntent().getExtras().getInt("location");
         num_text = getIntent().getExtras().getString("myNumber");
         num_edit.setHint(num_text);
         tv_edit_location = (TextView)findViewById(R.id.tv_edit_location);
 
+        mRootRef.child("user").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-        if(temp==0){
-            mRootRef.child("shop").child("nameShop").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    //  int questionCount = (int) dataSnapshot.getChildrenCount();
-                    // name_store.setText(""+questionCount);
-
-                    for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
-                        if (i == 0) {
-
-                            String shopName = shopSnapshot.getKey().toString();
-                            tv_edit_location.setText(shopName);
-                        }
-                        i++;
+                for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
+                    if(temp == i){
+                        String shopName = String.valueOf(shopSnapshot.child("shopName").child("name").getValue());
+                        tv_edit_location.setText(shopName);
                     }
-                    i=-1;
-
+                    i++;
                 }
+                i=1;
+            }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
+            }
+        });
 
-        }else{
-            mRootRef.child("shop").child("nameShop").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    //  int questionCount = (int) dataSnapshot.getChildrenCount();
-                    // name_store.setText(""+questionCount);
-
-                    for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
-                        if (i == 1) {
-
-                            String shopName = shopSnapshot.getKey().toString();
-                            tv_edit_location.setText(shopName);
-                        }
-                        i++;
-                    }
-                    i=-1;
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-        }
 
     }
 

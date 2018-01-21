@@ -43,9 +43,16 @@
         <item name="android:textSize">@dimen/num_q</item>
         <item name="android:textColor">@color/num_q</item>
     </style>
-
+    <style name="text_size24">
+        <item name="android:textSize">@dimen/text_size24</item>
+        <item name="android:textColor">@color/cancel_button</item>
+    </style>
     <style name="text_size20">
         <item name="android:textSize">@dimen/text_size20</item>
+        <item name="android:textColor">@color/default_text</item>
+    </style>
+    <style name="text_size18">
+        <item name="android:textSize">@dimen/text_size18</item>
         <item name="android:textColor">@color/default_text</item>
     </style>
 

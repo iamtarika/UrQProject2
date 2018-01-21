@@ -23,12 +23,12 @@ public class Notification extends AppCompatActivity {
 
     Switch sw_alarm , sw_notification;
     TextView tv_notification_setting;
-    Spinner sp;
-    String format[] = {"ทุกคิว", "จำนวนที่กำหนด", "ก่อนระยะเวลาที่กำหนด"};
-    ArrayAdapter<String> adapter;
     public int temp   = 0;
     public int temp_1   = 0;
 
+    Spinner sp;
+    String format[] = {"ทุกคิว", "จำนวนที่กำหนด", "ก่อนระยะเวลาที่กำหนด"};
+    ArrayAdapter<String> adapter;
 
     Spinner sp_2;
     String format_2[] = {"5 นาที", "10 นาที" , "20 นาที", "30 นาที" ,"60 นาที"};

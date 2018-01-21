@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +37,8 @@ public class FillInformation extends AppCompatActivity {
 
     Spinner areaSpinner;
     int temp=0;
+    String countNo="0";
+
 
 
 
@@ -54,7 +57,7 @@ public class FillInformation extends AppCompatActivity {
 
 
 
-        mRootRef.child("shop").child("nameShop").addValueEventListener(new ValueEventListener() {
+        mRootRef.child("user").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Is better to use a List, because you don't know the size
@@ -63,7 +66,7 @@ public class FillInformation extends AppCompatActivity {
                 final List<String> shop = new ArrayList<String>();
 
                 for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
-                    String shopName = shopSnapshot.getKey().toString();
+                    String shopName = String.valueOf(shopSnapshot.child("shopName").child("name").getValue());
                     shop.add(shopName);
                 }
 
@@ -82,12 +85,36 @@ public class FillInformation extends AppCompatActivity {
         areaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i){
-                    case 0: temp = 0;   break;
-                    case 1: temp = 1;   break;
-                }
 
-              //  Toast.makeText(getApplicationContext(), temp+"" ,Toast.LENGTH_SHORT).show();
+                    temp = i+1 ;
+
+                final TextView a2 = (TextView) findViewById(R.id.text_2);
+                final int[] k = {1};
+                mRootRef.child("user").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot numSnapshot: dataSnapshot.getChildren()) {
+
+
+                            if(temp == k[0]){
+                                countNo = String.valueOf(numSnapshot.child("qNumber").getChildrenCount());
+
+                                a2.setText(countNo+"--");
+
+
+                            }
+                            k[0]++;
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
             }
 
@@ -101,24 +128,47 @@ public class FillInformation extends AppCompatActivity {
 
 
 
+        btn_fill_save.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+
+                if(v == btn_fill_save && et_num_q.getText().toString().equals("")){
+
+                    Toast.makeText(getApplicationContext(), "กรุณาระบุเลขคิว" ,Toast.LENGTH_SHORT).show();
+
+                }
+                else if(v == btn_fill_save && (Integer.parseInt(et_num_q.getText().toString()) > Integer.parseInt(countNo) )){
+
+                    Toast.makeText(getApplicationContext(), "ไม่มีเลขคิวนี้ในระบบ" ,Toast.LENGTH_SHORT).show();
+
+                }else if(et_num_q.getText().toString().equals("0") ){
+
+                    Toast.makeText(getApplicationContext(), "กรุณาระบุเลขคิว" ,Toast.LENGTH_SHORT).show();
+
+                }
+                else if(et_num_q.getText().toString().length()!=0){
+
+                    Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
+                    intent.putExtra("location", temp);
+                    intent.putExtra("myNumber", et_num_q.getText().toString());
+                    startActivity(intent);
+
+                }else{
+
+                    Toast.makeText(getApplicationContext(), "กรุณาระบุเลขคิว" ,Toast.LENGTH_SHORT).show();
+
+                }
+
+
+            }
+        });
+
+
+
+
     }
 
 
-   public void clickButtonfillInformation (View v){
-       if( v == btn_fill_save &&et_num_q.getText().toString().length()!=0){
-
-           Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
-           intent.putExtra("location", temp);
-           intent.putExtra("myNumber", et_num_q.getText().toString());
-           startActivity(intent);
-
-       }else{
-
-           Toast.makeText(getApplicationContext(), "กรุณาระบุเลขคิว" ,Toast.LENGTH_SHORT).show();
-       }
-
-
-   }
 
 
     @Override
