@@ -9,6 +9,7 @@
     <string name="title_activity_edit">Edit</string>
     <string name="title_activity_search_store">ค้นหาร้านค้า</string>
     <string name="title_activity_main_list">MainListActivity</string>
+    <string name="title_activity_log_in">LogInActivity</string>
 
 
 </resources>

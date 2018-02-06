@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +40,12 @@ public class FillInformation extends AppCompatActivity {
     Spinner areaSpinner;
     int temp=0;
     String countNo="0";
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
+
+    String shopName;
+
 
 
 
@@ -116,6 +124,26 @@ public class FillInformation extends AppCompatActivity {
                     }
                 });
 
+                mRootRef.child("user").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        int i = 1;
+                        for (DataSnapshot numSnapshot: dataSnapshot.getChildren()) {
+                            if(temp == i){
+                                shopName = String.valueOf(numSnapshot.child("shopName").child("name").getValue());
+                            }
+                            i++;
+
+                        }
+
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
             }
 
             @Override
@@ -148,7 +176,17 @@ public class FillInformation extends AppCompatActivity {
                 }
                 else if(et_num_q.getText().toString().length()!=0){
 
-                    Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    DatabaseReference mCodeShop = mRootRef.child("customer").child(user.getUid()).child("Add").child(temp+"");
+                    DatabaseReference mCodeShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(temp+"").child("noShop");
+                    DatabaseReference mCodeNoRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(temp+"").child("noQ");
+                    DatabaseReference mCodeNameRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(temp+"").child("nameShop");
+                        mCodeShopRef.setValue(temp+"");
+                        mCodeNoRef.setValue(et_num_q.getText().toString()+"");
+                        mCodeNameRef.setValue(shopName);
+
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     intent.putExtra("location", temp);
                     intent.putExtra("myNumber", et_num_q.getText().toString());
                     startActivity(intent);

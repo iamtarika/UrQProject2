@@ -88,12 +88,13 @@ public class SearchStore extends AppCompatActivity {
                                 k++;
                             }
 
-                                arr2[i] = new String(+countQ+"");
+                                arr2[i] = new String(countQ+"");
 
-                    ListSearchStore l_search_store = new ListSearchStore(arr1[i],arr2[i]);
+                            ListSearchStore l_search_store = new ListSearchStore(arr1[i],arr2[i]);
                             list.add(l_search_store);
 
                                  i++;
+                                 testData.setText(arr2[1]);
 
                 }
 
@@ -107,13 +108,6 @@ public class SearchStore extends AppCompatActivity {
 
             }
         });
-
-        /////////////output
-     /*   list = new ArrayList<ListSearchStore>();
-        for (int i = 0 ; i< arr1.length ;i++){
-            ListSearchStore l_search_store = new ListSearchStore(arr1[i],arr2[i]);
-            list.add(l_search_store);
-        }  */
 
 
     }
@@ -144,6 +138,8 @@ public class SearchStore extends AppCompatActivity {
 
 
   }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

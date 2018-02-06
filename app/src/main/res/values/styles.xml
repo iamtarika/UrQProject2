@@ -43,14 +43,17 @@
         <item name="android:textSize">@dimen/num_q</item>
         <item name="android:textColor">@color/num_q</item>
     </style>
+
     <style name="text_size24">
         <item name="android:textSize">@dimen/text_size24</item>
         <item name="android:textColor">@color/cancel_button</item>
     </style>
+
     <style name="text_size20">
         <item name="android:textSize">@dimen/text_size20</item>
         <item name="android:textColor">@color/default_text</item>
     </style>
+
     <style name="text_size18">
         <item name="android:textSize">@dimen/text_size18</item>
         <item name="android:textColor">@color/default_text</item>
@@ -91,6 +94,12 @@
         <item name="android:backgroundTint">@color/addnumber_button</item>
     </style>
 
+    <style name="logout_button">
+        <item name="android:textSize">@dimen/text_size22</item>
+        <item name="android:textColor">@color/text_button</item>
+        <item name="android:backgroundTint">@color/logout_button</item>
+    </style>
+
     <style name="topic_title">
         <item name="android:textSize">@dimen/text_size20</item>
         <item name="android:textColor">@color/topic_color</item>
@@ -123,6 +132,7 @@
     <style name="spinner_style_noti">
         <item name="colorControlActivated">@color/save_button</item>
     </style>
+
     <style name="MyActionBar">
         <item name="android:height">56dp</item>
         <item name="height">56dp</item>
