@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +26,9 @@ public class Edit extends AppCompatActivity {
     String num_text;
     int temp;
     TextView tv_edit_location;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
     private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     int i = 1;
 
@@ -35,25 +40,27 @@ public class Edit extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        firebaseAuth = FirebaseAuth.getInstance();
 
         num_edit =(EditText) findViewById(R.id.num_edit);
         temp = getIntent().getExtras().getInt("location");
         num_text = getIntent().getExtras().getString("myNumber");
-        num_edit.setHint(num_text);
+        num_edit.setHint(num_text); // setตัวหนังสือบางๆ
         tv_edit_location = (TextView)findViewById(R.id.tv_edit_location);
 
-        mRootRef.child("user").addValueEventListener(new ValueEventListener() {
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        mRootRef.child("customer").child(user.getUid() + "").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
-                    if(temp == i){
-                        String shopName = String.valueOf(shopSnapshot.child("shopName").child("name").getValue());
+
+                        String shopName = String.valueOf(dataSnapshot.child("Add").child(temp+"").child("nameShop").getValue());
                         tv_edit_location.setText(shopName);
-                    }
-                    i++;
-                }
-                i=1;
+
+
+
+
             }
 
             @Override
@@ -74,6 +81,11 @@ public class Edit extends AppCompatActivity {
             startActivity(intent);
         }else{
             final EditText num_new =(EditText)findViewById(R.id.num_edit);
+
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            DatabaseReference qWaitShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(temp+"").child("noQ");
+            qWaitShopRef.setValue(num_new.getText().toString()+"");
+
             Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
             intent.putExtra("location", temp);
             intent.putExtra("myNumber", num_new.getText().toString());

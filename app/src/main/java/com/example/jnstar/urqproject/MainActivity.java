@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -157,68 +158,77 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                                         nameShop = String.valueOf(shopSnapshot.child("nameShop").getValue());
                                         noShop = String.valueOf(shopSnapshot.child("noShop").getValue());
                                         noQ = String.valueOf(shopSnapshot.child("noQ").getValue());
-                                        arr_1 [m] = new String(nameShop);
-                                        arr_2 [m] = new String(noShop);
-                                        arr_3 [m] = new String(noQ);
+                                        arr_1[m] = new String(nameShop);
+                                        arr_2[m] = new String(noShop);
+                                        arr_3[m] = new String(noQ);
 
 
 
-                                        jRootRef.child("user").addValueEventListener(new ValueEventListener() {
+
+                                        mRootRef.child("user").addValueEventListener(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                                    int i =0;
-                                                    for (DataSnapshot _shopSnapshot: dataSnapshot.getChildren()) {
-                                                        String nameAllUser = String.valueOf(_shopSnapshot.child("shopName").child("name").getValue());
-                                                        if (arr_1[i].equals(nameAllUser)){
+                                                    for (int i = 0 ;i<Integer.parseInt(countAdd);i++){
 
-                                                            int k=1;
+                                                        for (DataSnapshot _shopSnapshot: dataSnapshot.getChildren()) {
+                                                            String nameAllUser = String.valueOf(_shopSnapshot.child("shopName").child("name").getValue());
 
-                                                            while (countStatus!="null"){
+                                                            if (arr_1[i].equals(nameAllUser)){
 
-                                                                countStatus = String.valueOf(_shopSnapshot.child("qNumber").child(k+"").child("status").getValue());
+                                                                int k=1;
 
-                                                                if (countStatus.equals("finish")){
-                                                                    countFinish++;
+                                                                while (countStatus!="null") {
 
-                                                                }else if(countStatus.equals("doing")){
-                                                                    countDoing++;
+                                                                    countStatus = String.valueOf(_shopSnapshot.child("qNumber").child(k + "").child("status").getValue());
 
-                                                                }else if(countStatus.equals("q")){
-                                                                    countQ++;
+                                                                    if (countStatus.equals("finish")) {
+                                                                        countFinish++;
+
+                                                                    } else if (countStatus.equals("doing")) {
+                                                                        countDoing++;
+
+                                                                    } else if (countStatus.equals("q")) {
+                                                                        countQ++;
+
+                                                                    }
+
+                                                                    k++;
 
                                                                 }
 
-                                                                k++;
+                                                                countFinishAndDoing = countFinish+countDoing;
+
+                                                                String statusAllUser = String.valueOf(_shopSnapshot.child("qNumber").child(arr_3[i]+"").child("status").getValue());
+                                                                if (statusAllUser.equals("finish")){
+                                                                    DatabaseReference qWaitShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(arr_2[i]+"").child("qWait");
+                                                                    qWaitShopRef.setValue("0");
+                                                                }else if(statusAllUser.equals("doing")){
+                                                                    DatabaseReference qWaitShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(arr_2[i]+"").child("qWait");
+                                                                    qWaitShopRef.setValue("0");
+                                                                }else if(statusAllUser.equals("q")){
+                                                                    DatabaseReference qWaitShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(arr_2[i]+"").child("qWait");
+                                                                    qWaitShopRef.setValue(Integer.parseInt(arr_3[i])-countFinishAndDoing);
+                                                                }
+
+
+
+                                                                countStatus = ".";
+                                                                countFinish = 0;
+                                                                countDoing = 0 ;
+                                                                countQ = 0 ;
+
+
+
                                                             }
 
-                                                            countFinishAndDoing = countFinish+countDoing;
 
-                                                            String statusAllUser = String.valueOf(_shopSnapshot.child("qNumber").child(arr_3[i]+"").child("status").getValue());
-                                                            if (statusAllUser.equals("finish")){
-                                                                DatabaseReference qWaitShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(arr_2[i]+"").child("qWait");
-                                                                qWaitShopRef.setValue("0");
-                                                            }else if(statusAllUser.equals("doing")){
-                                                                DatabaseReference qWaitShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(arr_2[i]+"").child("qWait");
-                                                                qWaitShopRef.setValue("0");
-                                                            }else if(statusAllUser.equals("q")){
-                                                                DatabaseReference qWaitShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(arr_2[i]+"").child("qWait");
-                                                                qWaitShopRef.setValue(Integer.parseInt(arr_3[i])-countFinishAndDoing);
-                                                            }
-
-
-
-                                                            countStatus = ".";
-                                                            countFinish = 0;
-                                                            countDoing = 0 ;
-                                                            countQ = 0 ;
 
 
                                                         }
 
-                                                        i++;
-
                                                     }
+
 
                                                 }
 
@@ -230,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 
                                         qWait = String.valueOf(shopSnapshot.child("qWait").getValue());
-                                        arr_4 [m] = new String(qWait);
+                                        arr_4 [m] = new String(qWait+"");
 
 
                                         ListSearchStore l_search_store = new ListSearchStore(arr_1[m], arr_4[m]);
@@ -248,7 +258,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                             adapter = new ListSearchStore_adapter();
                             lv_show_added.setAdapter(adapter);
 
+                            lv_show_added.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                                    intent.putExtra("location", Integer.parseInt(arr_2[position])); // String
+                                    intent.putExtra("myNumber", arr_3[position]); // String
+                                    //test2.setText(arr_2[position]+"----"+arr_3[position]);
+                                    startActivity(intent);
 
+                                }
+                            });
                         }
 
                         @Override

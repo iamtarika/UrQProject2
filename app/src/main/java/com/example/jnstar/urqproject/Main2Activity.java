@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,8 +41,10 @@ public class Main2Activity extends AppCompatActivity {
      TextView num_queqe;
      String num_text;
      int temp;
-
      TextView name_store;
+
+     private FirebaseAuth firebaseAuth;
+     private FirebaseAuth.AuthStateListener firebaseAuthListener;
      private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
      int i=1;
 
@@ -78,6 +82,7 @@ public class Main2Activity extends AppCompatActivity {
         decline_button = (Button)findViewById(R.id.decline_button);
         fill_button = (Button)findViewById(R.id.fill_button);
         delete_button = (Button)findViewById(R.id.delete_button);
+
 
 
         num_queqe =(TextView)findViewById(R.id.num_queue);
@@ -241,8 +246,18 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
+        delete_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+              //  FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+              //   DatabaseReference db_node = mRootRef.child("customer").child(user.getUid()+"").child("Add").child(temp+"");
+              //   db_node.removeValue();
 
 
+
+            }
+        });
 
         decline_button.setOnClickListener(new View.OnClickListener(){
             @Override
