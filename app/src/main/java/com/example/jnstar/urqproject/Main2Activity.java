@@ -3,7 +3,11 @@ package com.example.jnstar.urqproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,28 +32,28 @@ import java.util.List;
 
 public class Main2Activity extends AppCompatActivity {
 
-     Button edit_button ;
-     Button decline_button;
-     Button fill_button;
-     Button delete_button;
+    Button edit_button ;
+    Button decline_button;
+    Button fill_button;
+    Button delete_button;
 
 
-     Button btn_dialog_clear;
-     Button btn_dialog_cancel;
+    Button btn_dialog_clear;
+    Button btn_dialog_cancel;
 
 
-     TextView num_queqe;
-     String num_text;
-     int temp;
-     TextView name_store;
+    TextView num_queqe;
+    String num_text;
+    int temp;
+    TextView name_store;
 
-     private FirebaseAuth firebaseAuth;
-     private FirebaseAuth.AuthStateListener firebaseAuthListener;
-     private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-     int i=1;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
+    private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    int i=1;
 
-     TextView remain_q;
-     TextView waiting_time;
+    TextView remain_q;
+    TextView waiting_time;
 
     int countFinishAndDoing = 0;
 
@@ -58,15 +62,15 @@ public class Main2Activity extends AppCompatActivity {
     int countQ =0;
     String countStatus = ".";
 
-        TextView textServiced;
-        TextView textShow0;
-        TextView textShow1;
-        TextView textShow2;
-        TextView textShow3;
-        TextView textShow4;
-        TextView textAdd1;
-        TextView textAdd2;
-        TextView textAdd3;
+    TextView textServiced;
+    TextView textShow0;
+    TextView textShow1;
+    TextView textShow2;
+    TextView textShow3;
+    TextView textShow4;
+    TextView textAdd1;
+    TextView textAdd2;
+    TextView textAdd3;
 
 
     @Override
@@ -76,7 +80,7 @@ public class Main2Activity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-     //   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         edit_button = (Button)findViewById(R.id.edit_button);
         decline_button = (Button)findViewById(R.id.decline_button);
@@ -215,9 +219,9 @@ public class Main2Activity extends AppCompatActivity {
                         }
 
                     }
-                                    i++;
+                    i++;
                 }
-                                    i=1;
+                i=1;
 
             }
 
@@ -250,9 +254,9 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-              //  FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-              //   DatabaseReference db_node = mRootRef.child("customer").child(user.getUid()+"").child("Add").child(temp+"");
-              //   db_node.removeValue();
+                //  FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                //   DatabaseReference db_node = mRootRef.child("customer").child(user.getUid()+"").child("Add").child(temp+"");
+                //   db_node.removeValue();
 
 
 

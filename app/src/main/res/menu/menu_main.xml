@@ -12,12 +12,12 @@
         app:showAsAction="always"
 
         />
-
     <item
         android:id="@+id/item_sound"
         android:icon="@drawable/ic_geadr_whitw"
         android:title="item sound setting"
         app:showAsAction="ifRoom" />
+
 
 
 

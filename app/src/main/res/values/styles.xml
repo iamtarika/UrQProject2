@@ -138,4 +138,12 @@
         <item name="height">56dp</item>
     </style>
 
+
+    <!--use item name="drawerArrowStyle" if you are using dark primaryColor in your app, else remove it-->
+    <style name="MaterialDrawer.DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">false</item>
+        <item name="color">@android:color/black</item>
+    </style>
+
+
 </resources>

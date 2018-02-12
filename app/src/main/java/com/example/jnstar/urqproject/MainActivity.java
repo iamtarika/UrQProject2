@@ -1,14 +1,21 @@
 package com.example.jnstar.urqproject;
 
+import android.app.Activity;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuInflater;
@@ -19,10 +26,23 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.view.View;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -95,6 +115,23 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         setSupportActionBar(toolbar);
 
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                return false;
+            }
+        });
+
+
+
         tv_specify_q=(TextView)findViewById(R.id.tv_specify_q);
         Typeface tf_1=Typeface.createFromAsset(getAssets(),"fonts/CmPrasanmit.ttf");
         tv_specify_q.setTypeface(tf_1);
@@ -151,104 +188,104 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 
 
-                                      int  m=0;
-                                    for (DataSnapshot shopSnapshot : dataSnapshot.child("Add").getChildren()) {
+                                int  m=0;
+                                for (DataSnapshot shopSnapshot : dataSnapshot.child("Add").getChildren()) {
 
 
-                                        nameShop = String.valueOf(shopSnapshot.child("nameShop").getValue());
-                                        noShop = String.valueOf(shopSnapshot.child("noShop").getValue());
-                                        noQ = String.valueOf(shopSnapshot.child("noQ").getValue());
-                                        arr_1[m] = new String(nameShop);
-                                        arr_2[m] = new String(noShop);
-                                        arr_3[m] = new String(noQ);
-
-
-
-
-                                        mRootRef.child("user").addValueEventListener(new ValueEventListener() {
-                                                @Override
-                                                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                                    for (int i = 0 ;i<Integer.parseInt(countAdd);i++){
-
-                                                        for (DataSnapshot _shopSnapshot: dataSnapshot.getChildren()) {
-                                                            String nameAllUser = String.valueOf(_shopSnapshot.child("shopName").child("name").getValue());
-
-                                                            if (arr_1[i].equals(nameAllUser)){
-
-                                                                int k=1;
-
-                                                                while (countStatus!="null") {
-
-                                                                    countStatus = String.valueOf(_shopSnapshot.child("qNumber").child(k + "").child("status").getValue());
-
-                                                                    if (countStatus.equals("finish")) {
-                                                                        countFinish++;
-
-                                                                    } else if (countStatus.equals("doing")) {
-                                                                        countDoing++;
-
-                                                                    } else if (countStatus.equals("q")) {
-                                                                        countQ++;
-
-                                                                    }
-
-                                                                    k++;
-
-                                                                }
-
-                                                                countFinishAndDoing = countFinish+countDoing;
-
-                                                                String statusAllUser = String.valueOf(_shopSnapshot.child("qNumber").child(arr_3[i]+"").child("status").getValue());
-                                                                if (statusAllUser.equals("finish")){
-                                                                    DatabaseReference qWaitShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(arr_2[i]+"").child("qWait");
-                                                                    qWaitShopRef.setValue("0");
-                                                                }else if(statusAllUser.equals("doing")){
-                                                                    DatabaseReference qWaitShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(arr_2[i]+"").child("qWait");
-                                                                    qWaitShopRef.setValue("0");
-                                                                }else if(statusAllUser.equals("q")){
-                                                                    DatabaseReference qWaitShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(arr_2[i]+"").child("qWait");
-                                                                    qWaitShopRef.setValue(Integer.parseInt(arr_3[i])-countFinishAndDoing);
-                                                                }
+                                    nameShop = String.valueOf(shopSnapshot.child("nameShop").getValue());
+                                    noShop = String.valueOf(shopSnapshot.child("noShop").getValue());
+                                    noQ = String.valueOf(shopSnapshot.child("noQ").getValue());
+                                    arr_1[m] = new String(nameShop);
+                                    arr_2[m] = new String(noShop);
+                                    arr_3[m] = new String(noQ);
 
 
 
-                                                                countStatus = ".";
-                                                                countFinish = 0;
-                                                                countDoing = 0 ;
-                                                                countQ = 0 ;
 
+                                    mRootRef.child("user").addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
 
+                                            for (int i = 0 ;i<Integer.parseInt(countAdd);i++){
+
+                                                for (DataSnapshot _shopSnapshot: dataSnapshot.getChildren()) {
+                                                    String nameAllUser = String.valueOf(_shopSnapshot.child("shopName").child("name").getValue());
+
+                                                    if (arr_1[i].equals(nameAllUser)){
+
+                                                        int k=1;
+
+                                                        while (countStatus!="null") {
+
+                                                            countStatus = String.valueOf(_shopSnapshot.child("qNumber").child(k + "").child("status").getValue());
+
+                                                            if (countStatus.equals("finish")) {
+                                                                countFinish++;
+
+                                                            } else if (countStatus.equals("doing")) {
+                                                                countDoing++;
+
+                                                            } else if (countStatus.equals("q")) {
+                                                                countQ++;
 
                                                             }
 
-
-
+                                                            k++;
 
                                                         }
+
+                                                        countFinishAndDoing = countFinish+countDoing;
+
+                                                        String statusAllUser = String.valueOf(_shopSnapshot.child("qNumber").child(arr_3[i]+"").child("status").getValue());
+                                                        if (statusAllUser.equals("finish")){
+                                                            DatabaseReference qWaitShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(arr_2[i]+"").child("qWait");
+                                                            qWaitShopRef.setValue("0");
+                                                        }else if(statusAllUser.equals("doing")){
+                                                            DatabaseReference qWaitShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(arr_2[i]+"").child("qWait");
+                                                            qWaitShopRef.setValue("0");
+                                                        }else if(statusAllUser.equals("q")){
+                                                            DatabaseReference qWaitShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(arr_2[i]+"").child("qWait");
+                                                            qWaitShopRef.setValue(Integer.parseInt(arr_3[i])-countFinishAndDoing);
+                                                        }
+
+
+
+                                                        countStatus = ".";
+                                                        countFinish = 0;
+                                                        countDoing = 0 ;
+                                                        countQ = 0 ;
+
+
 
                                                     }
 
 
+
+
                                                 }
 
-                                                @Override
-                                                public void onCancelled(DatabaseError databaseError) {
-
-                                                }
-                                            });
+                                            }
 
 
-                                        qWait = String.valueOf(shopSnapshot.child("qWait").getValue());
-                                        arr_4 [m] = new String(qWait+"");
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
 
 
-                                        ListSearchStore l_search_store = new ListSearchStore(arr_1[m], arr_4[m]);
-                                        list.add(l_search_store);
+                                    qWait = String.valueOf(shopSnapshot.child("qWait").getValue());
+                                    arr_4 [m] = new String(qWait+"");
 
-                                        m++;
 
-                                    }
+                                    ListSearchStore l_search_store = new ListSearchStore(arr_1[m], arr_4[m]);
+                                    list.add(l_search_store);
+
+                                    m++;
+
+                                }
 
 
 
@@ -317,20 +354,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     }
 
-   public void clickButtonEnter (View v){
+    public void clickButtonEnter (View v){
         if(v == btn_fill_inform ){
             Intent intent = new Intent(getApplicationContext(),FillInformation.class);
             startActivity(intent);
         }
 
-   }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.menu_main,menu);
-            return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
 
-      //  return true;
+        //  return true;
     }
 
     private void setUserData(FirebaseUser user) {
@@ -348,13 +385,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         int id = item.getItemId();
         if(id == R.id.item_sound){
-           Intent intent = new Intent(getApplicationContext(),Notification.class);
-           startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(),Notification.class);
+            startActivity(intent);
         }else if(id == R.id.action_search){
             Intent intent = new Intent(getApplicationContext(),SearchStore.class);
             startActivity(intent);
         }
-       return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
 
     }
 
