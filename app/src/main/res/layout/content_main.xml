@@ -63,14 +63,7 @@
             android:onClick="clickButtonEnter"
             android:text="เพิ่มรายการแจ้งเตือน" />
 
-        <Button
-            android:id="@+id/btnLogout"
-            android:onClick="logOut"
-            style="@style/logout_button"
-            android:layout_gravity="center"
-            android:layout_width="300dp"
-            android:layout_height="65dp"
-            android:text="Sign out" />
+
 
 
     </LinearLayout>

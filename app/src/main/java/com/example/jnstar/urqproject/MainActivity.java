@@ -16,6 +16,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuInflater;
@@ -43,6 +44,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.target.Target;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -104,8 +107,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     TextView textShowList2_1 ;
     TextView textShowList2_2 ;
     int i = 0;
-    String tempValue ="นอว์";
     int m=1;
+
+    ImageView imageView;
+    TextView nameGoogle;
+    TextView textEmail;
+    NavigationView navigationView;
+
+    Button btn_main_dialog_Logout;
+    Button btn_main_dialog_cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,15 +131,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        //navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                return false;
-            }
-        });
 
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
 
 
         tv_specify_q=(TextView)findViewById(R.id.tv_specify_q);
@@ -143,7 +148,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         textShowList2_1 = (TextView)findViewById(R.id.textShowList2_1);
         textShowList2_2 = (TextView)findViewById(R.id.textShowList2_2);
 
+        imageView = (ImageView)findViewById(R.id.imageView);
+        //nameGoogle = (TextView)findViewById(R.id.nameGoogle);
+        textEmail = (TextView)findViewById(R.id.textEmail);
+
         test2  = (TextView)findViewById(R.id.test2);
+
+
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -159,10 +170,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                final FirebaseUser user = firebaseAuth.getCurrentUser();
+               final FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null){
-                    //setUserData(user);
-                    //read&write data
+
+                    View headerView = navigationView.getHeaderView(0);
+                    nameGoogle = (TextView) headerView.findViewById(R.id.nameGoogle);
+                    textEmail =(TextView) headerView.findViewById(R.id.textEmail);
+                    nameGoogle.setText(user.getDisplayName());
+                    textEmail.setText(user.getEmail());
+                    imageView = (ImageView)headerView.findViewById(R.id.imageView);
+                    Glide.with(headerView.getContext()).load(user.getPhotoUrl()).into(imageView);
+
 
                     mRootRef.child("customer").child(user.getUid() + "").addValueEventListener(new ValueEventListener() {
                         @Override
@@ -323,6 +341,50 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int id = item.getItemId();
+                //noinspection SimplifiableIfStatement
+                if (id == R.id.nav_search) {
+                    Intent intent = new Intent(getApplicationContext(),SearchStore.class);
+                    startActivity(intent);
+                }else if(id == R.id.nav_setting){
+                    Intent intent = new Intent(getApplicationContext(),Notification.class);
+                    startActivity(intent);
+                }else if(id == R.id.nav_logout){
+                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+                    View mView = getLayoutInflater().inflate(R.layout.dialog_main_logout,null);
+                    btn_main_dialog_Logout = (Button)mView.findViewById(R.id.btn_main_dialog_Logout);
+                    btn_main_dialog_cancel = (Button)mView.findViewById(R.id.btn_main_dialog_cancel);
+                    mBuilder.setView(mView);
+                    final AlertDialog dialog = mBuilder.create();
+                    dialog.show();;
+
+                    btn_main_dialog_Logout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.cancel();
+                            logOut(view);
+                        }
+                    });
+
+                    btn_main_dialog_cancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.cancel();
+                        }
+                    });
+
+                }
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+                // return true;
+
+                return false;
+            }
+        });
 
 
 
@@ -362,27 +424,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
-        return super.onCreateOptionsMenu(menu);
-
-        //  return true;
-    }
-
-    private void setUserData(FirebaseUser user) {
-    /*    nameTextView.setText(user.getDisplayName());
-        emailTextView.setText(user.getEmail());
-        idTextView.setText(user.getUid());
-        mCode = user.getUid();
-        Glide.with(this).load(user.getPhotoUrl()).into(photoImageView);
-       */
-    }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+/*
         int id = item.getItemId();
         if(id == R.id.item_sound){
             Intent intent = new Intent(getApplicationContext(),Notification.class);
@@ -391,9 +436,29 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             Intent intent = new Intent(getApplicationContext(),SearchStore.class);
             startActivity(intent);
         }
+  */
         return super.onOptionsItemSelected(item);
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_blank,menu);
+        return super.onCreateOptionsMenu(menu);
+
+        //  return true;
+    }
+
+    private void setUserData(FirebaseUser user) {
+
+        // nameGoogle.setText(user.getDisplayName());
+        // textEmail.setText(user.getEmail());
+        // idTextView.setText(user.getUid());
+        // mCode = user.getUid();
+        //Glide.with(this).load(user.getPhotoUrl()).into(imageView);
+    }
+
+
 
     @Override
     protected void onStart() {
@@ -409,7 +474,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 if(status.isSuccess()){
                     GoLogInScrean();
                 }else{
-                    Toast.makeText(getApplicationContext(),"eiei",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"ไม่สามารถออกจากระบบได้ กรุณาลองใหม่อีกครั้ง",Toast.LENGTH_SHORT).show();
                 }
             }
         });
