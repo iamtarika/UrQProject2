@@ -1,6 +1,7 @@
 package com.example.jnstar.urqproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -101,6 +103,16 @@ public class SearchStore extends AppCompatActivity {
                 adapter = new ListSearchStore_adapter();
                 listViewStore.setAdapter(adapter);
 
+                listViewStore.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(SearchStore.this, Reservation.class);
+                        intent.putExtra("location", position); // String
+                        startActivity(intent);
+
+                    }
+                });
+
             }
 
             @Override
@@ -108,6 +120,9 @@ public class SearchStore extends AppCompatActivity {
 
             }
         });
+
+
+
 
 
     }

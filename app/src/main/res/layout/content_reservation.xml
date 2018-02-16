@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+app:layout_behavior="@string/appbar_scrolling_view_behavior"
+tools:context="com.example.jnstar.urqproject.Reservation"
+tools:showIn="@layout/activity_reservation"
+android:orientation="vertical"
+    >
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="40dp">
+
+    <TextView
+        android:id="@+id/store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:text="@string/store"
+        android:textAppearance="@style/name_stores" />
+
+    <TextView
+        android:id="@+id/name_reserve_store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ร้านนี้เพื่อกดจอง"
+        android:textAppearance="@style/name_stores" />
+
+</LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_reserve_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="เวลาเปิด-ปิด : "
+                android:textAppearance="@style/text_size20" />
+
+            <TextView
+                android:id="@+id/text_reserve_time_open_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="xx.00-xx.00"
+                android:textAppearance="@style/text_size20" />
+
+            <TextView
+                android:id="@+id/text_reserve_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text=" น."
+                android:textAppearance="@style/text_size20" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_1"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_reserve_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="เปิดจองคิวเวลา : "
+                android:textAppearance="@style/text_size20" />
+
+            <TextView
+                android:id="@+id/text_reserve_time_reserve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="xx.00"
+                android:textAppearance="@style/text_size20" />
+            <TextView
+                android:id="@+id/text_reserve_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text=" น."
+                android:textAppearance="@style/text_size20" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_2"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_reserve_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="หากจองต้องรอ"
+                android:textAppearance="@style/text_size20" />
+
+            <TextView
+                android:id="@+id/text_reserve_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="มีคิวที่รอรับการบริการ"
+                android:textAppearance="@style/text_size20" />
+
+            <TextView
+                android:id="@+id/text_reserve_q_wait"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text=" 10 "
+                android:textAppearance="@style/text_size20" />
+
+            <TextView
+                android:id="@+id/text_reserve_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text=" คิว "
+                android:textAppearance="@style/text_size20" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_reserve"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:text="จอง"
+                style="@style/reserve_button"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tarika"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="....อิอิ"/>
+
+
+
+   </LinearLayout>

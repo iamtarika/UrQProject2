@@ -38,11 +38,20 @@
         <activity
             android:name=".SearchStore"
             android:label="@string/title_activity_search_store"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+
+        </activity>
         <activity
             android:name=".LogInActivity"
             android:label="@string/title_activity_log_in"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Reservation"
+            android:label="@string/title_activity_reservation"
+            android:theme="@style/AppTheme.NoActionBar">
+
+
+        </activity>
     </application>
 
 </manifest>

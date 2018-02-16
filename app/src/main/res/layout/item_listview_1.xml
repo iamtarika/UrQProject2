@@ -2,33 +2,47 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         >
 
         <TextView
             android:id="@+id/nameStore"
-            android:layout_width="180dp"
+            android:layout_width="217dp"
             android:layout_height="50dp"
+            android:background="#ECEFF1"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
             android:text="ชื่อร้าน"
-            />
+            android:textColor="#000000"
+            android:textSize="@dimen/text_size18" />
+
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:gravity="center"
-            android:text="เหลืออีก"
-            />
+            android:layout_gravity="fill"
+            android:background="#ECEFF1"
+            android:paddingTop="10dp"
+            android:text="เหลืออีก" />
+
         <TextView
             android:id="@+id/qStore"
-            android:layout_width="25dp"
+            android:layout_width="48dp"
             android:layout_height="50dp"
-            android:gravity="center"
-            />
+            android:layout_gravity="fill"
+            android:background="#ECEFF1"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp" />
+
         <TextView
-            android:layout_width="50dp"
+            android:layout_width="61dp"
             android:layout_height="50dp"
-            android:gravity="center"
-            android:text="คิว"
-            />
+            android:layout_gravity="fill"
+            android:background="#ECEFF1"
+            android:paddingTop="10dp"
+            android:text="คิว" />
 
 </LinearLayout>

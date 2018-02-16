@@ -2,16 +2,26 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="70dp"
+    android:orientation="vertical"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp">
 
 
     <TextView
         android:id="@+id/nameShop"
-        android:layout_width="180dp"
-        android:layout_height="20dp"
-        android:text="ชื่อร้าน"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#ECEFF1"
+        android:textSize="@dimen/text_size18"
+        android:textColor="#000000"
+        android:paddingTop="5dp"
+        android:paddingLeft="18dp"
+        android:text="ชื่อร้าน............."
+
         />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,24 +29,29 @@
 
         <TextView
             android:id="@+id/textShowList2_1"
-            android:layout_width="80dp"
-            android:layout_height="20dp"
+            android:layout_width="95dp"
+            android:layout_height="30dp"
+            android:background="#ECEFF1"
             android:gravity="center"
-            android:text="เหลืออีก  :"
-            />
+            android:text="เหลืออีก  :" />
+
         <TextView
             android:id="@+id/qShop"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
+            android:layout_width="61dp"
+            android:layout_height="30dp"
+            android:background="#ECEFF1"
             android:gravity="center"
-            />
+            android:text="0" />
+
         <TextView
             android:id="@+id/textShowList2_2"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:gravity="center"
-            android:text="คิว"
-            />
+            android:layout_width="219dp"
+            android:layout_height="30dp"
+            android:background="#ECEFF1"
+            android:layout_gravity="center"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:text="คิว" />
 
     </LinearLayout>
 

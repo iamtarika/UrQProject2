@@ -6,15 +6,36 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="30dp">
+    android:padding="60dp">
 
     <TextView
         android:id="@+id/tv_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="คุณต้องออกจากระบบหรือไม่?"
+        android:gravity="center"
+        android:text="โปรดระบุจำนวนคน"
         android:textAppearance="@style/verify_text"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+
+        <Spinner
+            android:id="@+id/sp_location_q"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="340dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30sp"
+            android:layout_marginRight="30sp"
+            android:textSize="22sp"
+            android:theme="@style/spinner_style_fill"
+            />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
