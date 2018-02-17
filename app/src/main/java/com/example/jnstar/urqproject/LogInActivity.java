@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class LogInActivity extends AppCompatActivity implements GoogleApiClient.
 
     private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
 
+    //ImageView image_logo_black;
 
 
     @Override
@@ -59,6 +61,9 @@ public class LogInActivity extends AppCompatActivity implements GoogleApiClient.
                 .enableAutoManage(this,this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
                 .build();
+
+        //image_logo_black = (ImageView)findViewById(R.id.imageView);
+        //image_logo_black.setImageResource(R.drawable.ic_launcher_background);
 
         signInButton = (SignInButton) findViewById(R.id.login_with_google);
         signInButton.setSize(SignInButton.SIZE_WIDE);
