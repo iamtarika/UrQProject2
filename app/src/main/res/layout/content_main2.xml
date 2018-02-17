@@ -192,7 +192,7 @@
             android:layout_width="130dp"
             android:layout_height="65dp"
             style="@style/cancel_button"
-            android:text="ปฏิเสธคิว"
+            android:text="ลบรายการ"
             android:layout_marginLeft="20dp"
             />
     </LinearLayout>

@@ -253,13 +253,11 @@ public class Main2Activity extends AppCompatActivity {
         delete_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-
-                //  FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                //   DatabaseReference db_node = mRootRef.child("customer").child(user.getUid()+"").child("Add").child(temp+"");
-                //   db_node.removeValue();
-
-
-
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                DatabaseReference db_node = mRootRef.child("customer").child(user.getUid()+"").child("Add").child(temp+"");
+                db_node.removeValue();
+                startActivity(intent);
             }
         });
 
@@ -279,8 +277,11 @@ public class Main2Activity extends AppCompatActivity {
                     public void onClick(View view) {
                         dialog.cancel();
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                        intent.putExtra("location", temp);
-                        intent.putExtra("myNumber", num_text);
+
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        DatabaseReference db_node = mRootRef.child("customer").child(user.getUid()+"").child("Add").child(temp+"");
+                        db_node.removeValue();
+
                         startActivity(intent);
                     }
                 });
@@ -288,6 +289,7 @@ public class Main2Activity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         dialog.cancel();
+
 
                     }
                 });
