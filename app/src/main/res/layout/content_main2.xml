@@ -147,7 +147,7 @@
                 android:id="@+id/waiting_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="100"
+                android:text="xxx"
                 android:textAppearance="@style/text_size20" />
 
             <TextView
@@ -168,13 +168,6 @@
         android:layout_marginTop="50dp">
 
         <Button
-            android:id="@+id/edit_button"
-            android:layout_width="130dp"
-            android:layout_height="65dp"
-            style="@style/edit_button"
-            android:text="แก้ไข"
-            />
-        <Button
             android:id="@+id/fill_button"
             style="@style/add_list_q"
             android:layout_width="300dp"
@@ -189,7 +182,7 @@
 
         <Button
             android:id="@+id/decline_button"
-            android:layout_width="130dp"
+            android:layout_width="300dp"
             android:layout_height="65dp"
             style="@style/cancel_button"
             android:text="ลบรายการ"

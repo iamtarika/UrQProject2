@@ -6,6 +6,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,11 +37,13 @@ public class FillInformation extends AppCompatActivity {
 
     Button btn_fill_save;
     EditText et_num_q;
+    EditText et_pin;
     private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
 
     Spinner areaSpinner;
     int temp=0;
     String countNo="0";
+
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
@@ -47,7 +51,12 @@ public class FillInformation extends AppCompatActivity {
     String shopName;
 
 
+    private String text;
+    private boolean delete = false;
+    private static final int CODE_SIZE=4;
 
+
+TextView test_2;
 
 
     @Override
@@ -61,9 +70,10 @@ public class FillInformation extends AppCompatActivity {
 
         btn_fill_save =(Button)findViewById(R.id.btn_fill_save);
         et_num_q =(EditText)findViewById(R.id.et_num_q);
+        et_pin = (EditText)findViewById(R.id.et_pin);
         areaSpinner = (Spinner) findViewById(R.id.sp_location_q);
 
-
+        test_2 = (TextView)findViewById(R.id.text_2) ;
 
         mRootRef.child("user").addValueEventListener(new ValueEventListener() {
             @Override
@@ -153,11 +163,58 @@ public class FillInformation extends AppCompatActivity {
         });
 
 
+        et_pin.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int count, int after) {
+
+                text = et_pin.getText().toString();
+                if (count > after){
+                    delete = true;
+                }
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+
+                StringBuilder sb = new StringBuilder(s.toString());
+                int replacePosition = et_pin.getSelectionEnd();
+
+                if (s.length() != CODE_SIZE) {
+                    if (!delete) {
+                        if (replacePosition < s.length())
+                            sb.deleteCharAt(replacePosition);
+                    } else {
+                        sb.insert(replacePosition, '_');
+                    }
+
+                    if (replacePosition < s.length() || delete) {
+                        et_pin.setText(sb.toString());
+                        et_pin.setSelection(replacePosition);
+                    } else {
+                        et_pin.setText(text);
+                        et_pin.setSelection(replacePosition - 1);
+                    }
+                }
+
+                delete = false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+
+
 
 
 
         btn_fill_save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+
 
 
                 if(v == btn_fill_save && et_num_q.getText().toString().equals("")){
@@ -176,20 +233,72 @@ public class FillInformation extends AppCompatActivity {
                 }
                 else if(et_num_q.getText().toString().length()!=0){
 
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                    DatabaseReference mCodeShop = mRootRef.child("customer").child(user.getUid()).child("Add").child(temp+"");
-                    DatabaseReference mCodeShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(temp+"").child("noShop");
-                    DatabaseReference mCodeNoRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(temp+"").child("noQ");
-                    DatabaseReference mCodeNameRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(temp+"").child("nameShop");
-                        mCodeShopRef.setValue(temp+"");
-                        mCodeNoRef.setValue(et_num_q.getText().toString()+"");
-                        mCodeNameRef.setValue(shopName);
+                    mRootRef.child("user").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                    intent.putExtra("location", temp);
-                    intent.putExtra("myNumber", et_num_q.getText().toString());
-                    startActivity(intent);
+                                int k = 1;
+                            for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
+
+                                String getPin = String.valueOf(shopSnapshot.child("qNumber").child(et_num_q.getText().toString()+"").child("pin").getValue());
+
+                                String getUid = String.valueOf(shopSnapshot.getKey().toString());
+
+                                if(k==temp){
+
+                                    if (getPin.equals(et_pin.getText().toString())){
+
+                                      //  test_2.setText(getUid+"");
+
+                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                        DatabaseReference mCodeShop = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"");
+                                        DatabaseReference mCodeShopRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noShop");
+                                        DatabaseReference mCodeNoRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noQ");
+                                        DatabaseReference mCodeNameRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("nameShop");
+                                        DatabaseReference mCodePinRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noPin");
+
+                                        mCodeShopRef.setValue(temp+"");
+                                        mCodeNoRef.setValue(et_num_q.getText().toString()+"");
+                                        mCodeNameRef.setValue(shopName);
+                                        mCodePinRef.setValue(et_pin.getText().toString()+"");
+
+                                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                       // intent.putExtra("location", temp);
+                                       // intent.putExtra("myNumber", et_num_q.getText().toString());
+                                       // intent.putExtra("myPin",et_pin.getText().toString());
+                                        startActivity(intent);
+
+                                    }else {
+                                        if (et_pin.getText().toString().length()<4){
+                                            Toast.makeText(getApplicationContext(), "คุณระบุเลขไม่ครบ" ,Toast.LENGTH_SHORT).show();
+                                           // test_2.setText(et_pin.getText().toString()+"");
+                                        }else {
+                                            Toast.makeText(getApplicationContext(), "คุณระบุเลข pin ผิด" ,Toast.LENGTH_SHORT).show();
+                                        }
+
+
+
+                                    }
+
+
+
+                                }
+
+
+                                k++;
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+
 
                 }else{
 

@@ -71,7 +71,7 @@ public class SearchStore extends AppCompatActivity {
                      arr1 = new String[Integer.parseInt(countUser)];
                      arr2 = new String[Integer.parseInt(countUser)];
 
-                     int i =0;
+                     int i = 0;
 
                 for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
 
@@ -96,14 +96,14 @@ public class SearchStore extends AppCompatActivity {
                             list.add(l_search_store);
 
                                  i++;
-                                 testData.setText(arr2[1]);
+                                // testData.setText(arr2[1]);
 
                 }
 
                 adapter = new ListSearchStore_adapter();
                 listViewStore.setAdapter(adapter);
 
-                listViewStore.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+              /*  listViewStore.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(SearchStore.this, Reservation.class);
@@ -112,6 +112,7 @@ public class SearchStore extends AppCompatActivity {
 
                     }
                 });
+              */
 
             }
 

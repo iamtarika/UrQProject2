@@ -124,7 +124,7 @@ android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="มีคิวที่รอรับการบริการ"
+                android:text="คิวที่รอรับการบริการ"
                 android:textAppearance="@style/text_size20" />
 
             <TextView
@@ -168,7 +168,7 @@ android:orientation="vertical"
         android:id="@+id/tarika"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="....อิอิ"/>
+    />
 
 
 

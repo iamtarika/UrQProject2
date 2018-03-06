@@ -58,6 +58,32 @@
         android:theme="@style/et_style_fill"
         />
 
+    <TextView
+        android:id="@+id/tv_pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ระบุ Pin ของคุณ"
+        android:textAppearance="@style/default_text"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"/>
+
+    <EditText
+        android:id="@+id/et_pin"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:hint="ระบุเลข 4 ตัว"
+        android:inputType="number"
+        android:layout_marginRight="30sp"
+        android:layout_marginLeft="30sp"
+        android:textColorLink="@color/colorPrimaryDark"
+        android:layout_gravity="center"
+        android:theme="@style/et_style_fill"
+        android:background="@android:color/transparent"
+        android:singleLine="true"
+        android:letterSpacing="0.2"
+        android:textSize="29sp"
+        />
+
     <Button
         android:id="@+id/btn_fill_save"
         android:layout_width="150dp"

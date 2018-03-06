@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,6 +27,8 @@ public class Edit extends AppCompatActivity {
     String num_text;
     int temp;
     TextView tv_edit_location;
+    String countQNumber;
+
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
@@ -48,6 +51,8 @@ public class Edit extends AppCompatActivity {
         num_edit.setHint(num_text); // setตัวหนังสือบางๆ
         tv_edit_location = (TextView)findViewById(R.id.tv_edit_location);
 
+
+
         final FirebaseUser user = firebaseAuth.getCurrentUser();
 
         mRootRef.child("customer").child(user.getUid() + "").addValueEventListener(new ValueEventListener() {
@@ -69,6 +74,26 @@ public class Edit extends AppCompatActivity {
             }
         });
 
+        mRootRef.child("user").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                    int i = 1;
+                for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
+                    if (temp == i){
+                        countQNumber = String.valueOf(shopSnapshot.child("qNumber").getChildrenCount());
+                    }
+                    i++;
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
 
     }
 
@@ -79,7 +104,10 @@ public class Edit extends AppCompatActivity {
             intent.putExtra("location", temp);
             intent.putExtra("myNumber", num_text);
             startActivity(intent);
-        }else{
+        }else if(Integer.parseInt(num_edit.getText().toString()) > Integer.parseInt(countQNumber) ){
+            Toast.makeText(getApplicationContext(), "ไม่มีเลขคิวนี้ในระบบ" ,Toast.LENGTH_SHORT).show();
+        }
+        else {
             final EditText num_new =(EditText)findViewById(R.id.num_edit);
 
             FirebaseUser user = firebaseAuth.getCurrentUser();

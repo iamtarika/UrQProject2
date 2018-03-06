@@ -9,6 +9,10 @@
             android:icon="@drawable/ic_action_search"
             android:title="ค้นหาร้านค้า" />
         <item
+            android:id="@+id/nav_reserve"
+            android:icon="@drawable/ic_queue_black_24dp"
+            android:title="จองคิวออนไลน์" />
+        <item
             android:id="@+id/nav_setting"
             android:icon="@drawable/ic_geadr_whitw"
             android:title="ตั้งค่าการแจ้งเตือน" />

@@ -32,7 +32,7 @@ import java.util.List;
 
 public class Main2Activity extends AppCompatActivity {
 
-    Button edit_button ;
+   // Button edit_button ;
     Button decline_button;
     Button fill_button;
     Button delete_button;
@@ -44,7 +44,7 @@ public class Main2Activity extends AppCompatActivity {
 
     TextView num_queqe;
     String num_text;
-    int temp;
+    String temp; // รับ location
     TextView name_store;
 
     private FirebaseAuth firebaseAuth;
@@ -82,7 +82,7 @@ public class Main2Activity extends AppCompatActivity {
 
         //   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        edit_button = (Button)findViewById(R.id.edit_button);
+       // edit_button = (Button)findViewById(R.id.edit_button);
         decline_button = (Button)findViewById(R.id.decline_button);
         fill_button = (Button)findViewById(R.id.fill_button);
         delete_button = (Button)findViewById(R.id.delete_button);
@@ -90,7 +90,7 @@ public class Main2Activity extends AppCompatActivity {
 
 
         num_queqe =(TextView)findViewById(R.id.num_queue);
-        temp = getIntent().getExtras().getInt("location");
+        temp = getIntent().getExtras().getString("location");
         num_text =getIntent().getExtras().getString("myNumber");
         num_queqe.setText(num_text);
         remain_q =(TextView)findViewById(R.id.remain_q);
@@ -112,116 +112,127 @@ public class Main2Activity extends AppCompatActivity {
 
 
 
-        mRootRef.child("user").addValueEventListener(new ValueEventListener() {
+        mRootRef.child("user").child(temp+"").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
-                    if(temp == i){
-                        String shopName = String.valueOf(shopSnapshot.child("shopName").child("name").getValue());
-                        name_store.setText(shopName);
+                String shopName = String.valueOf(dataSnapshot.child("shopName").child("name").getValue());
+                name_store.setText(shopName);
 
-                        String statusCheck = String.valueOf(shopSnapshot.child("qNumber").child(num_text).child("status").getValue());
-                        String repeatCheck = String.valueOf(shopSnapshot.child("qNumber").child(num_text).child("repeat").getValue());
-                        String qType = String.valueOf(shopSnapshot.child("shopName").child("qType").getValue());
+                String statusCheck = String.valueOf(dataSnapshot.child("qNumber").child(num_text).child("status").getValue());
+                //String repeatCheck = String.valueOf(dataSnapshot.child("qNumber").child(num_text).child("repeat").getValue());
+                String qType = String.valueOf(dataSnapshot.child("shopName").child("qType").getValue());
 
 
-                        /////////////////นับจำนวณว่ามีแต่ละอันเท่าไหร่
-                        int k=1;
-                        while (!countStatus.equals("null")){
+                    int k=1;
+                    while (!countStatus.equals("null")){
 
-                            countStatus = String.valueOf(shopSnapshot.child("qNumber").child(k+"").child("status").getValue());
+                        countStatus = String.valueOf(dataSnapshot.child("qNumber").child(k+"").child("status").getValue());
 
-                            if (countStatus.equals("finish")){
-                                countFinish++;
-                            }else if(countStatus.equals("doing")){
-                                countDoing++;
-                            }else if(countStatus.equals("q")){
-                                countQ++;
-                            }
-
-                            if(!countStatus.equals("null")){
-                                k++;
-                            }
-                        }
-                        countFinishAndDoing = countFinish+countDoing;
-
-                        if (num_text.equals(String.valueOf(countFinishAndDoing))) {
-                            textServiced.setVisibility(View.GONE); //หมายเลขนี้ได้รับการบริการไปแล้ว
-
-                            textShow1.setVisibility(View.GONE);     //จำนวนคิวที่ต้องรอ
-                            remain_q.setVisibility(View.GONE);      // เลขคิว
-                            textShow2.setVisibility(View.GONE);     // คิว
-
-                            textShow0.setVisibility(View.VISIBLE); // ถึงคิวของคุณแล้ว
-
-                            textAdd1.setVisibility(View.GONE);    // กด เพิ่มหมายเลขคิว เพื่อทำรายการแจ้งเตือนใหม่
-                            textAdd2.setVisibility(View.GONE);    // เพิ่มหมายเลขคิว
-                            textAdd3.setVisibility(View.GONE);    // เพื่อทำรายการแจ้งเตือนใหม่
-
-                            textShow3.setVisibility(View.GONE);     // ต้องรอประมาณ
-                            waiting_time.setVisibility(View.GONE);  // เลข
-                            textShow4.setVisibility(View.GONE);     // นาที
-
-                            fill_button.setVisibility(View.GONE); // กดเพิ่มรายการ
-                            edit_button.setVisibility(View.GONE);    // แก้ไข
-                            decline_button.setVisibility(View.GONE); // ลบ
-                            delete_button.setVisibility(View.VISIBLE); //ลบรายการแจ้งเตือนนี้
-
-                        }else if(statusCheck.equals("finish")||statusCheck.equals("doing")){
-
-                            textServiced.setVisibility(View.VISIBLE); //หมายเลขนี้ได้รับการบริการไปแล้ว
-
-                            textShow1.setVisibility(View.GONE);     //จำนวนคิวที่ต้องรอ
-                            remain_q.setVisibility(View.GONE);      // เลขคิว
-                            textShow2.setVisibility(View.GONE);     // คิว
-
-                            textShow0.setVisibility(View.GONE); // ถึงคิวของคุณแล้ว
-
-                            textAdd1.setVisibility(View.VISIBLE);    // กด เพิ่มหมายเลขคิว เพื่อทำรายการแจ้งเตือนใหม่
-                            textAdd2.setVisibility(View.VISIBLE);    // เพิ่มหมายเลขคิว
-                            textAdd3.setVisibility(View.VISIBLE);    // เพื่อทำรายการแจ้งเตือนใหม่
-
-                            textShow3.setVisibility(View.GONE);     // ต้องรอประมาณ
-                            waiting_time.setVisibility(View.GONE);  // เลข
-                            textShow4.setVisibility(View.GONE);     // นาที
-
-                            fill_button.setVisibility(View.VISIBLE); // กดเพิ่มรายการ
-                            edit_button.setVisibility(View.GONE);    // แก้ไข
-                            decline_button.setVisibility(View.GONE); // ลบ
-                            delete_button.setVisibility(View.GONE); //ลบรายการแจ้งเตือนนี้
-
-                        }else if(statusCheck.equals("q")){
-
-                            textServiced.setVisibility(View.GONE); //หมายเลขนี้ได้รับการบริการไปแล้ว
-
-                            textShow1.setVisibility(View.VISIBLE);     //จำนวนคิวที่ต้องรอ
-                            remain_q.setVisibility(View.VISIBLE);      // เลขคิว
-                            textShow2.setVisibility(View.VISIBLE);     // คิว
-
-                            textShow0.setVisibility(View.GONE); // ถึงคิวของคุณแล้ว
-
-                            textAdd1.setVisibility(View.GONE);    // กด เพิ่มหมายเลขคิว เพื่อทำรายการแจ้งเตือนใหม่
-                            textAdd2.setVisibility(View.GONE);    // เพิ่มหมายเลขคิว
-                            textAdd3.setVisibility(View.GONE);    // เพื่อทำรายการแจ้งเตือนใหม่
-
-                            textShow3.setVisibility(View.GONE);     // ต้องรอประมาณ
-                            waiting_time.setVisibility(View.GONE);  // เลข
-                            textShow4.setVisibility(View.GONE);     // นาที
-
-                            fill_button.setVisibility(View.GONE); // กดเพิ่มรายการ
-                            edit_button.setVisibility(View.VISIBLE);    // แก้ไข
-                            decline_button.setVisibility(View.VISIBLE); // ลบ
-                            delete_button.setVisibility(View.GONE); //ลบรายการแจ้งเตือนนี้
-
-                            remain_q.setText(Integer.parseInt(num_text)-(countFinish+countDoing)+"");
-
+                        if (countStatus.equals("finish")){
+                            countFinish++;
+                        }else if(countStatus.equals("doing")){
+                            countDoing++;
+                        }else if(countStatus.equals("q")){
+                            countQ++;
                         }
 
+                        if(!countStatus.equals("null")){
+                            k++;
+                        }
                     }
-                    i++;
+                    countFinishAndDoing = countFinish+countDoing; //
+
+                    // num_queqe.setText(countQ+"");
+                if (num_text.equals(String.valueOf(countFinishAndDoing))) {
+                    textServiced.setVisibility(View.GONE); //หมายเลขนี้ได้รับการบริการไปแล้ว
+
+                    textShow1.setVisibility(View.GONE);     //จำนวนคิวที่ต้องรอ
+                    remain_q.setVisibility(View.GONE);      // เลขคิว
+                    textShow2.setVisibility(View.GONE);     // คิว
+
+                    textShow0.setVisibility(View.VISIBLE); // ถึงคิวของคุณแล้ว
+
+                    textAdd1.setVisibility(View.GONE);    // กด เพิ่มหมายเลขคิว เพื่อทำรายการแจ้งเตือนใหม่
+                    textAdd2.setVisibility(View.GONE);    // เพิ่มหมายเลขคิว
+                    textAdd3.setVisibility(View.GONE);    // เพื่อทำรายการแจ้งเตือนใหม่
+
+                    textShow3.setVisibility(View.GONE);     // ต้องรอประมาณ
+                    waiting_time.setVisibility(View.GONE);  // เลข
+                    textShow4.setVisibility(View.GONE);     // นาที
+
+                    fill_button.setVisibility(View.GONE); // กดเพิ่มรายการ
+                  //  edit_button.setVisibility(View.GONE);    // แก้ไข
+                    decline_button.setVisibility(View.GONE); // ลบ
+                    delete_button.setVisibility(View.VISIBLE); //ลบรายการแจ้งเตือนนี้
+
+                }else if(statusCheck.equals("finish")||statusCheck.equals("doing")){
+
+                    textServiced.setVisibility(View.VISIBLE); //หมายเลขนี้ได้รับการบริการไปแล้ว
+
+                    textShow1.setVisibility(View.GONE);     //จำนวนคิวที่ต้องรอ
+                    remain_q.setVisibility(View.GONE);      // เลขคิว
+                    textShow2.setVisibility(View.GONE);     // คิว
+
+                    textShow0.setVisibility(View.GONE); // ถึงคิวของคุณแล้ว
+
+                    textAdd1.setVisibility(View.VISIBLE);    // กด เพิ่มหมายเลขคิว เพื่อทำรายการแจ้งเตือนใหม่
+                    textAdd2.setVisibility(View.VISIBLE);    // เพิ่มหมายเลขคิว
+                    textAdd3.setVisibility(View.VISIBLE);    // เพื่อทำรายการแจ้งเตือนใหม่
+
+                    textShow3.setVisibility(View.GONE);     // ต้องรอประมาณ
+                    waiting_time.setVisibility(View.GONE);  // เลข
+                    textShow4.setVisibility(View.GONE);     // นาที
+
+                    fill_button.setVisibility(View.VISIBLE); // กดเพิ่มรายการ
+                  //  edit_button.setVisibility(View.GONE);    // แก้ไข
+                    decline_button.setVisibility(View.GONE); // ลบ
+                    delete_button.setVisibility(View.GONE); //ลบรายการแจ้งเตือนนี้
+
+                }else if(statusCheck.equals("q")){
+
+                    textServiced.setVisibility(View.GONE); //หมายเลขนี้ได้รับการบริการไปแล้ว
+
+                    textShow1.setVisibility(View.VISIBLE);     //จำนวนคิวที่ต้องรอ
+                    remain_q.setVisibility(View.VISIBLE);      // เลขคิว
+                    textShow2.setVisibility(View.VISIBLE);     // คิว
+
+                    textShow0.setVisibility(View.GONE); // ถึงคิวของคุณแล้ว
+
+                    textAdd1.setVisibility(View.GONE);    // กด เพิ่มหมายเลขคิว เพื่อทำรายการแจ้งเตือนใหม่
+                    textAdd2.setVisibility(View.GONE);    // เพิ่มหมายเลขคิว
+                    textAdd3.setVisibility(View.GONE);    // เพื่อทำรายการแจ้งเตือนใหม่
+
+                    textShow3.setVisibility(View.GONE);     // ต้องรอประมาณ
+                    waiting_time.setVisibility(View.GONE);  // เลข
+                    textShow4.setVisibility(View.GONE);     // นาที
+
+                    fill_button.setVisibility(View.GONE); // กดเพิ่มรายการ
+                   // edit_button.setVisibility(View.VISIBLE);    // แก้ไข
+                    decline_button.setVisibility(View.VISIBLE); // ลบ
+                    delete_button.setVisibility(View.GONE); //ลบรายการแจ้งเตือนนี้
+
+                    remain_q.setText(Integer.parseInt(num_text)-(countFinish+countDoing)+"");
+
+
+                    if (qType.equals("0")){
+                        // ไม่คำนวณเวลา
+                        textShow3.setVisibility(View.GONE);     // ต้องรอประมาณ
+                        waiting_time.setVisibility(View.GONE);  // เลข
+                        textShow4.setVisibility(View.GONE);
+
+                    }else{
+                        //คำนวณเวลา
+                        textShow3.setVisibility(View.VISIBLE);     // ต้องรอประมาณ
+                        waiting_time.setVisibility(View.VISIBLE);  // เลข
+                        textShow4.setVisibility(View.VISIBLE);     // นาที
+                    }
+
                 }
-                i=1;
+
+
+
+
 
             }
 
@@ -240,7 +251,7 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
-        edit_button.setOnClickListener(new View.OnClickListener() {
+   /*     edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),Edit.class);
@@ -249,7 +260,7 @@ public class Main2Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+    */
         delete_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {

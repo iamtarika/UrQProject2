@@ -211,10 +211,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 
                                     nameShop = String.valueOf(shopSnapshot.child("nameShop").getValue());
-                                    noShop = String.valueOf(shopSnapshot.child("noShop").getValue());
+                                    noShop = String.valueOf(shopSnapshot.getKey());
                                     noQ = String.valueOf(shopSnapshot.child("noQ").getValue());
                                     arr_1[m] = new String(nameShop);
-                                    arr_2[m] = new String(noShop);
+                                    arr_2[m] = new String(noShop); // Uid
                                     arr_3[m] = new String(noQ);
 
 
@@ -317,7 +317,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     Intent intent = new Intent(MainActivity.this, Main2Activity.class);
-                                    intent.putExtra("location", Integer.parseInt(arr_2[position])); // String
+                                    intent.putExtra("location", arr_2[position]); // String
                                     intent.putExtra("myNumber", arr_3[position]); // String
                                     //test2.setText(arr_2[position]+"----"+arr_3[position]);
                                     startActivity(intent);
@@ -348,11 +348,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 int id = item.getItemId();
                 //noinspection SimplifiableIfStatement
                 if (id == R.id.nav_search) {
-                    Intent intent = new Intent(getApplicationContext(),SearchStore.class);
+                    Intent intent = new Intent(getApplicationContext(), SearchStore.class);
                     startActivity(intent);
+
+                }else if(id == R.id.nav_reserve){
+                    Intent intent = new Intent(getApplicationContext(), SearchStore.class);
+                    startActivity(intent);
+
                 }else if(id == R.id.nav_setting){
                     Intent intent = new Intent(getApplicationContext(),Notification.class);
                     startActivity(intent);
+
                 }else if(id == R.id.nav_logout){
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
                     View mView = getLayoutInflater().inflate(R.layout.dialog_main_logout,null);
