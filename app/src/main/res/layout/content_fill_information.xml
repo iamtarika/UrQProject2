@@ -44,7 +44,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"/>
 
-    <EditText
+      <EditText
         android:id="@+id/et_num_q"
         android:layout_width="340dp"
         android:layout_height="wrap_content"

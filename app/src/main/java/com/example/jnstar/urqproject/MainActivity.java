@@ -352,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     startActivity(intent);
 
                 }else if(id == R.id.nav_reserve){
-                    Intent intent = new Intent(getApplicationContext(), SearchStore.class);
+                    Intent intent = new Intent(getApplicationContext(), ReserveOnline.class);
                     startActivity(intent);
 
                 }else if(id == R.id.nav_setting){

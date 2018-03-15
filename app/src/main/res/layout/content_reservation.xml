@@ -16,13 +16,7 @@ android:orientation="vertical"
     android:layout_gravity="center"
     android:layout_marginTop="40dp">
 
-    <TextView
-        android:id="@+id/store"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:text="@string/store"
-        android:textAppearance="@style/name_stores" />
+
 
     <TextView
         android:id="@+id/name_reserve_store"
@@ -119,13 +113,6 @@ android:orientation="vertical"
                 android:text="หากจองต้องรอ"
                 android:textAppearance="@style/text_size20" />
 
-            <TextView
-                android:id="@+id/text_reserve_6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="คิวที่รอรับการบริการ"
-                android:textAppearance="@style/text_size20" />
 
             <TextView
                 android:id="@+id/text_reserve_q_wait"
@@ -136,7 +123,7 @@ android:orientation="vertical"
                 android:textAppearance="@style/text_size20" />
 
             <TextView
-                android:id="@+id/text_reserve_7"
+                android:id="@+id/text_reserve_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -151,8 +138,46 @@ android:orientation="vertical"
             android:gravity="center"
             android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="จำนวนคน"
+                android:textAppearance="@style/text_size20" />
+
+            <EditText
+                android:id="@+id/et_reserve_no_customer"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="1"
+                android:layout_marginRight="30sp"
+                android:layout_marginLeft="30sp"
+                android:textColorLink="@color/colorPrimaryDark"
+                android:textSize="22sp"
+                android:layout_gravity="center"
+                android:theme="@style/et_style_fill"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="คน"
+                android:textAppearance="@style/text_size20" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/btn_reserve"
+                android:onClick="onClickReserve"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
@@ -166,8 +191,9 @@ android:orientation="vertical"
 
     <TextView
         android:id="@+id/tarika"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="............."
     />
 
 

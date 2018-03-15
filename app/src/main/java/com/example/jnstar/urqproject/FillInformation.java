@@ -49,6 +49,7 @@ public class FillInformation extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
 
     String shopName;
+    String noCustomer;
 
 
     private String text;
@@ -249,7 +250,7 @@ TextView test_2;
 
                                     if (getPin.equals(et_pin.getText().toString())){
 
-                                      //  test_2.setText(getUid+"");
+                                        noCustomer = String.valueOf(shopSnapshot.child("qNumber").child(et_num_q.getText().toString()+"").child("noCustomer").getValue());
 
                                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -258,11 +259,13 @@ TextView test_2;
                                         DatabaseReference mCodeNoRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noQ");
                                         DatabaseReference mCodeNameRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("nameShop");
                                         DatabaseReference mCodePinRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noPin");
+                                        DatabaseReference mCodeNoCustomerRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noCustomer");
 
-                                        mCodeShopRef.setValue(temp+"");
+                                        mCodeShopRef.setValue(getUid+"");
                                         mCodeNoRef.setValue(et_num_q.getText().toString()+"");
                                         mCodeNameRef.setValue(shopName);
                                         mCodePinRef.setValue(et_pin.getText().toString()+"");
+                                        mCodeNoCustomerRef.setValue(noCustomer+"");
 
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                        // intent.putExtra("location", temp);

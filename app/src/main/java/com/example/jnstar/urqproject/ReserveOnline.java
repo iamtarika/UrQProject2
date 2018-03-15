@@ -34,6 +34,12 @@ public class ReserveOnline extends AppCompatActivity {
 
     private DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
 
+    String countStatus = ".";
+    int countQ ;
+    int countOpenReserve = 0 ;
+    String [] arr1;
+    String [] arr2;
+
     ListView listViewReserve;
 
     List<ListSearchStore> list;
@@ -51,27 +57,77 @@ public class ReserveOnline extends AppCompatActivity {
         listViewReserve = (ListView) findViewById(R.id.listViewReserve);
         list = new ArrayList<ListSearchStore>();
 
-        TextView ttt = (TextView)findViewById(R.id.ttt);
+        final TextView ttt = (TextView)findViewById(R.id.ttt);
 
 
-        Time today = new Time(Time.getCurrentTimezone());
-        today.setToNow();
+            mRootRef.child("user").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                list.clear();
+                for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
 
-        ttt.setText(today.format("%k:%M:%S"));
-
-         /*   mRootRef.child("user").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                    String statusReserve = String.valueOf(shopSnapshot.child("shopName").child("statusReserve").getValue());
+                    if (statusReserve.equals("1")){
+                        countOpenReserve = countOpenReserve +1;
+                    }
 
                 }
-            });
-        */
+
+                arr1 = new String[countOpenReserve];
+                arr2 = new String[countOpenReserve];
+
+                int i =0;
+
+                for (DataSnapshot shopSnapshot: dataSnapshot.getChildren()) {
+
+                    String statusReserve = String.valueOf(shopSnapshot.child("shopName").child("statusReserve").getValue());
+                    if (statusReserve.equals("1")){
+                            String shopName = String.valueOf(shopSnapshot.child("shopName").child("name").getValue());
+
+                            arr1[i] = new String(shopName);
+
+                            int k=1;
+                            countQ =0;
+                            countStatus = ".";
+                            while (!countStatus.equals("null")){
+                                countStatus = String.valueOf(shopSnapshot.child("qNumber").child(k+"").child("status").getValue());
+                                if(countStatus.equals("q")){
+                                    countQ++;
+                                }
+                                k++;
+                            }
+
+                            arr2[i] = new String(countQ+"");
+
+                            ListSearchStore l_search_store = new ListSearchStore(arr1[i],arr2[i]);
+                            list.add(l_search_store);
+
+                            i++;
+
+                    }
+
+                }
+                adapter = new ReserveOnline.ListSearchStore_adapter();
+                listViewReserve.setAdapter(adapter);
+
+                listViewReserve.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(ReserveOnline.this, Reservation.class);
+                        intent.putExtra("shopName", arr1[position]); // String ----> ส่งชื่อร้านไป
+                        startActivity(intent);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 
@@ -83,7 +139,7 @@ public class ReserveOnline extends AppCompatActivity {
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            View view = getLayoutInflater().inflate(R.layout.item_listview_1,parent,false);
+            View view = getLayoutInflater().inflate(R.layout.item_listview_3,parent,false);
             ListSearchStore l_search = list.get(position);
 
             TextView nameStore = (TextView)view.findViewById(R.id.nameReserveStore);

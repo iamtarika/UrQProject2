@@ -9,53 +9,76 @@
     android:padding="60dp">
 
     <TextView
-        android:id="@+id/tv_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="โปรดระบุจำนวนคน"
+        android:text="รายละเอียดการจอง"
         android:textAppearance="@style/verify_text"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="76dp"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:layout_height="wrap_content">
 
-        <Spinner
-            android:id="@+id/sp_location_q"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
-            android:layout_width="340dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="30sp"
-            android:layout_marginRight="30sp"
-            android:textSize="22sp"
-            android:theme="@style/spinner_style_fill"
+        <TextView
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="ร้าน : "
+            android:textAppearance="@style/verify_text"
+            />
+        <TextView
+            android:id="@+id/tv_dialog_name_shop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="xxx"
+            android:textAppearance="@style/verify_text"
             />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="จำนวนคน :"
+            android:textAppearance="@style/verify_text"/>
+
+        <TextView
+            android:id="@+id/tv_dialog_reserve_no_customer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="XX20"
+            android:textAppearance="@style/verify_text" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="76dp"
-        android:gravity="center"
+
         android:layout_marginTop="20dp">
 
         <Button
-            android:id="@+id/btn_main_dialog_Logout"
+            android:id="@+id/btn_reserve_dialog_ok"
             style="@style/ok_button"
-            android:layout_width="140dp"
+            android:layout_width="100dp"
             android:layout_height="55dp"
             android:onClick="ClickButtonLogout"
-            android:text="ใช่" />
+
+            android:text="จอง" />
 
 
         <Button
-            android:id="@+id/btn_main_dialog_cancel"
+            android:id="@+id/btn_reserve_dialog_cancel"
             style="@style/cancel_button"
-            android:layout_width="140dp"
+            android:layout_width="100dp"
             android:layout_height="55dp"
             android:layout_marginLeft="20dp"
             android:onClick="ClickButtonCancel"

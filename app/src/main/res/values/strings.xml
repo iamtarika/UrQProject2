@@ -17,5 +17,14 @@
     <string name="title_activity_main3">Main3Activity</string>
     <string name="title_activity_reservation">Reservation</string>
     <string name="title_activity_reserve_online">จองคิวออนไลน์</string>
-
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
 </resources>
