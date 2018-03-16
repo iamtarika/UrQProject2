@@ -46,6 +46,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:gravity="center"
         android:orientation="vertical">
 
@@ -55,13 +56,38 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/num_q"
             android:layout_marginTop="15sp"
+            android:text="0"
             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="8dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textAppearance="@style/text_size18"
+                android:text="Pin : "/>
+
+            <TextView
+                android:id="@+id/et_pin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/text_size18"
+                android:text="xxxx"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="5dp"
             android:gravity="center">
 
             <TextView
@@ -161,6 +187,8 @@
 
     </LinearLayout>
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -189,6 +217,8 @@
             android:layout_marginLeft="20dp"
             />
     </LinearLayout>
+
+
 
 
 

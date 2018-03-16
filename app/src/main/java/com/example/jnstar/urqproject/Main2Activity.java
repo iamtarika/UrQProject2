@@ -71,6 +71,7 @@ public class Main2Activity extends AppCompatActivity {
     TextView textAdd1;
     TextView textAdd2;
     TextView textAdd3;
+    TextView et_pin;
 
 
     @Override
@@ -94,7 +95,7 @@ public class Main2Activity extends AppCompatActivity {
         num_text =getIntent().getExtras().getString("myNumber");
         num_queqe.setText(num_text);
         remain_q =(TextView)findViewById(R.id.remain_q);
-
+        et_pin = (TextView)findViewById(R.id.et_pin);
 
         name_store =(TextView)findViewById(R.id.name_store);
         waiting_time =(TextView)findViewById(R.id.waiting_time);
@@ -123,6 +124,8 @@ public class Main2Activity extends AppCompatActivity {
                 //String repeatCheck = String.valueOf(dataSnapshot.child("qNumber").child(num_text).child("repeat").getValue());
                 String qType = String.valueOf(dataSnapshot.child("shopName").child("qType").getValue());
 
+                String pin = String.valueOf(dataSnapshot.child("qNumber").child(num_text).child("pin").getValue());
+                et_pin.setText(pin);
 
                     int k=1;
                     while (!countStatus.equals("null")){
