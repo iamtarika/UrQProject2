@@ -59,6 +59,11 @@
         <item name="android:textColor">@color/default_text</item>
     </style>
 
+    <style name="text_size19">
+        <item name="android:textSize">@dimen/text_size19</item>
+        <item name="android:textColor">@color/default_text</item>
+    </style>
+
     <style name="title_main">
         <item name="android:label">@string/app_name</item>
         <item name="android:gravity">center</item>

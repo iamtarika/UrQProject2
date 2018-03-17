@@ -15,8 +15,8 @@
     <ListView
         android:id="@+id/listViewStore"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:divider="@null"/>
+        android:layout_height="match_parent"
+        />
 
     <TextView
         android:id="@+id/testData"
