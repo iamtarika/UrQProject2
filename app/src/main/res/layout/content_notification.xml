@@ -11,7 +11,11 @@
     tools:showIn="@layout/activity_notification"
     android:layout_marginTop="30dp">
 
-
+<TextView
+    android:id="@+id/tot"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="..."/>
 
     <Switch
         android:id="@+id/sw_alarm"
@@ -48,27 +52,26 @@
         />
 
 
-        <Spinner
-            android:id="@+id/sp_setting"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30sp"
-            android:layout_marginRight="30sp"
-            android:layout_marginTop="10dp"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
-            android:theme="@style/spinner_style_noti"
-            />
+    <Spinner
+        android:id="@+id/sp_setting"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginTop="10dp"
+        android:theme="@style/spinner_style_noti" />
 
 
-        <TextView
-            android:id="@+id/tv_detail_1"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="30sp"
-            android:layout_marginRight="30sp"
-            android:layout_marginTop="25dp"
-            android:text="จำนวนคิวที่ต้องการให้แจ้งก่อนล่วงหน้า"
-            android:textSize="@dimen/text_size22" />
+    <TextView
+        android:id="@+id/tv_detail_1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="30sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginTop="25dp"
+        android:text="จำนวนคิวที่ต้องการให้แจ้งก่อนล่วงหน้า"
+        android:textSize="@dimen/text_size22" />
 
         <EditText
             android:id="@+id/ed_add_num"
@@ -105,5 +108,6 @@
             style="@style/Widget.AppCompat.Spinner.Underlined"
             android:theme="@style/spinner_style_noti"
             />
+
 
 </LinearLayout>

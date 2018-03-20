@@ -260,15 +260,32 @@ public class Reservation extends AppCompatActivity {
 
                             // ในส่วนของ customer
                             DatabaseReference nameShop = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("nameShop");
-                            nameShop.setValue(getNameFromUser+"");
                             DatabaseReference noPin = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noPin");
-                            noPin.setValue(noRandomPin+"");
                             DatabaseReference noQ = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noQ");
-                            noQ.setValue(Integer.parseInt(numQnumber)+1);
                             DatabaseReference noCustomerCus = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noCustomer");
-                            noCustomerCus.setValue(et_reserve_no_customer.getText().toString()+"");
                             DatabaseReference noShop = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noShop");
+
+                            nameShop.setValue(getNameFromUser+"");
+                            noPin.setValue(noRandomPin+"");
+                            noQ.setValue(Integer.parseInt(numQnumber)+1);
+                            noCustomerCus.setValue(et_reserve_no_customer.getText().toString()+"");
                             noShop.setValue(getUid+"");
+
+                            DatabaseReference mCodeNotificationSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"")
+                                    .child("notification").child("sound");
+                            DatabaseReference mCodeAlarmSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"")
+                                    .child("notification").child("alarm");
+                            DatabaseReference mCodeTypeSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"")
+                                    .child("notification").child("type");
+                            DatabaseReference mCodeDetailTypeSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"")
+                                    .child("notification").child("detailType");
+
+                            //for notification
+                            mCodeNotificationSound.setValue("1");
+                            mCodeAlarmSound.setValue("1");
+                            mCodeTypeSound.setValue("0");
+                            mCodeDetailTypeSound.setValue("0");
+
                             dialog.cancel();
 
                             Intent intent = new Intent(Reservation.this, MainActivity.class);

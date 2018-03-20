@@ -317,7 +317,7 @@ public class Main2Activity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_blank,menu);
+        getMenuInflater().inflate(R.menu.menu_sound,menu);
         return super.onCreateOptionsMenu(menu);
         //  return true;
     }
@@ -330,19 +330,10 @@ public class Main2Activity extends AppCompatActivity {
             intent.putExtra("location", temp);
             intent.putExtra("myNumber", num_text);
             startActivity(intent);
-        }else if(id == android.R.id.home){
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-            intent.putExtra("location", temp);
-            intent.putExtra("myNumber", num_text);
-            startActivity(intent);
-            //onBackPressed();
-            //return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
 
 

@@ -261,11 +261,30 @@ TextView test_2;
                                         DatabaseReference mCodePinRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noPin");
                                         DatabaseReference mCodeNoCustomerRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noCustomer");
 
+                                        DatabaseReference mCodeNotificationSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"")
+                                                .child("notification").child("sound");
+                                        DatabaseReference mCodeAlarmSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"")
+                                                .child("notification").child("alarm");
+                                        DatabaseReference mCodeTypeSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"")
+                                                .child("notification").child("type");
+                                        DatabaseReference mCodeDetailTypeSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"")
+                                                .child("notification").child("detailType");
+
+
+                                        //main detail for Main2Activity
                                         mCodeShopRef.setValue(getUid+"");
                                         mCodeNoRef.setValue(et_num_q.getText().toString()+"");
                                         mCodeNameRef.setValue(shopName);
                                         mCodePinRef.setValue(et_pin.getText().toString()+"");
                                         mCodeNoCustomerRef.setValue(noCustomer+"");
+
+                                        //for notification
+                                        mCodeNotificationSound.setValue("1");
+                                        mCodeAlarmSound.setValue("1");
+                                        mCodeTypeSound.setValue("0");
+                                        mCodeDetailTypeSound.setValue("0");
+
+
 
                                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                        // intent.putExtra("location", temp);
