@@ -355,10 +355,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     Intent intent = new Intent(getApplicationContext(), ReserveOnline.class);
                     startActivity(intent);
 
-                }else if(id == R.id.nav_setting){
-                    Intent intent = new Intent(getApplicationContext(),Notification.class);
-                    startActivity(intent);
-
                 }else if(id == R.id.nav_logout){
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
                     View mView = getLayoutInflater().inflate(R.layout.dialog_main_logout,null);

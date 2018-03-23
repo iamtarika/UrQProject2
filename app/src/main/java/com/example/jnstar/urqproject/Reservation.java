@@ -84,6 +84,7 @@ public class Reservation extends AppCompatActivity {
     int countFinish=0;
     String getNameFromUser;
     String numQnumber;
+    String getQType;
 
     //@SuppressLint("WrongViewCast")
     @Override
@@ -177,19 +178,20 @@ public class Reservation extends AppCompatActivity {
 
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                        if(et_reserve_no_customer.getText().toString().equals("0")&&i2>=0){
+                            Toast.makeText(getApplicationContext(), "จำนวนลูกค้าจะเป็น0ไม่ได้" ,Toast.LENGTH_SHORT).show();
+                            checkNo = false;
+                            et_reserve_no_customer.setText("");
+                        }
+                        else{
+                            checkNo = true;
+                        }
                     }
 
                     @Override
                     public void afterTextChanged(Editable editable) {
 
-                            if(et_reserve_no_customer.getText().toString().equals("0")){
-                                Toast.makeText(getApplicationContext(), "จำนวนลูกค้าจะเป็น0ไม่ได้" ,Toast.LENGTH_SHORT).show();
-                                checkNo = false;
-                            }
-                            else{
-                                checkNo = true;
-                            }
+
 
                     }
                 });
@@ -216,6 +218,7 @@ public class Reservation extends AppCompatActivity {
 
                                                 numQnumber = String.valueOf(dataSnapshot.child(getUid+"").child("qNumber").getChildrenCount());
                                                 getNameFromUser = String.valueOf(dataSnapshot.child(getUid+"").child("shopName").child("name").getValue());
+                                                getQType = String.valueOf(dataSnapshot.child(getUid+"").child("shopName").child("qType").getValue());
                                                 temp = Integer.parseInt(numQnumber)+1; // ลำดับที่มันควรจะได้ (ที่สร้างขึ้นมาใหม่)
 
 
@@ -252,6 +255,8 @@ public class Reservation extends AppCompatActivity {
                             }else {
                                 status.setValue("q");
                             }
+                            DatabaseReference mCodeQType = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("qType");
+                            mCodeQType.setValue(getQType+"");
 
                             DatabaseReference timeIn = mRootRef.child("user").child(getUid+"").child("qNumber").child(temp+"").child("time").child("timeIn");
                             timeIn.setValue("xx.xx");
@@ -279,12 +284,15 @@ public class Reservation extends AppCompatActivity {
                                     .child("notification").child("type");
                             DatabaseReference mCodeDetailTypeSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"")
                                     .child("notification").child("detailType");
+                            DatabaseReference mCodeDetailTypeSound2 = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"")
+                                    .child("notification").child("detailType2");
 
                             //for notification
                             mCodeNotificationSound.setValue("1");
                             mCodeAlarmSound.setValue("1");
                             mCodeTypeSound.setValue("0");
-                            mCodeDetailTypeSound.setValue("0");
+                            mCodeDetailTypeSound.setValue("1");
+                            mCodeDetailTypeSound2.setValue("1");
 
                             dialog.cancel();
 

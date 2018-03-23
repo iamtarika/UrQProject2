@@ -246,11 +246,14 @@ TextView test_2;
 
                                 String getUid = String.valueOf(shopSnapshot.getKey().toString());
 
+
+
                                 if(k==temp){
 
                                     if (getPin.equals(et_pin.getText().toString())){
 
                                         noCustomer = String.valueOf(shopSnapshot.child("qNumber").child(et_num_q.getText().toString()+"").child("noCustomer").getValue());
+                                        String getQType = String.valueOf(shopSnapshot.child("shopName").child("qType").getValue());
 
                                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -260,6 +263,7 @@ TextView test_2;
                                         DatabaseReference mCodeNameRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("nameShop");
                                         DatabaseReference mCodePinRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noPin");
                                         DatabaseReference mCodeNoCustomerRef = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("noCustomer");
+                                        DatabaseReference mCodeQType = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"").child("qType");
 
                                         DatabaseReference mCodeNotificationSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"")
                                                 .child("notification").child("sound");
@@ -269,6 +273,8 @@ TextView test_2;
                                                 .child("notification").child("type");
                                         DatabaseReference mCodeDetailTypeSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"")
                                                 .child("notification").child("detailType");
+                                        DatabaseReference mCodeDetailTypeSound2 = mRootRef.child("customer").child(user.getUid()).child("Add").child(getUid+"")
+                                                .child("notification").child("detailType2");
 
 
                                         //main detail for Main2Activity
@@ -277,12 +283,14 @@ TextView test_2;
                                         mCodeNameRef.setValue(shopName);
                                         mCodePinRef.setValue(et_pin.getText().toString()+"");
                                         mCodeNoCustomerRef.setValue(noCustomer+"");
+                                        mCodeQType.setValue(getQType+"");
 
                                         //for notification
                                         mCodeNotificationSound.setValue("1");
                                         mCodeAlarmSound.setValue("1");
                                         mCodeTypeSound.setValue("0");
-                                        mCodeDetailTypeSound.setValue("0");
+                                        mCodeDetailTypeSound.setValue("1");
+                                        mCodeDetailTypeSound2.setValue("1");
 
 
 
