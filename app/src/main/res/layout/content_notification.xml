@@ -11,11 +11,6 @@
     tools:showIn="@layout/activity_notification"
     android:layout_marginTop="30dp">
 
-<TextView
-    android:id="@+id/tot"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="..."/>
 
     <Switch
         android:id="@+id/sw_alarm"
@@ -122,6 +117,7 @@
 
         <Button
             android:id="@+id/btn_notification_save"
+            android:onClick="btnSaveNotification"
             style="@style/save_button"
             android:layout_width="250dp"
             android:layout_height="65dp"

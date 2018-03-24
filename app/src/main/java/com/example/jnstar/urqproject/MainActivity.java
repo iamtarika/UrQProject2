@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         test2  = (TextView)findViewById(R.id.test2);
 
-
+        list.clear();
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

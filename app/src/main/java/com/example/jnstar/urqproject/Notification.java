@@ -64,7 +64,7 @@ public class Notification extends AppCompatActivity {
     boolean check = false;
     Button btn_notification_save ;
     String notificationTypeBtn;
-    TextView tot;
+
 
 
     @Override
@@ -76,10 +76,10 @@ public class Notification extends AppCompatActivity {
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        sw_alarm = (Switch)findViewById(R.id.sw_alarm);
-        sw_notification =(Switch)findViewById(R.id.sw_notification);
+        sw_alarm = (Switch) findViewById(R.id.sw_alarm);
+        sw_notification = (Switch) findViewById(R.id.sw_notification);
 
-        tv_notification_setting =(TextView)findViewById(R.id.tv_notification_setting);
+        tv_notification_setting = (TextView) findViewById(R.id.tv_notification_setting);
         tv_notification_setting.setTextColor(Color.parseColor("#cac8ca"));
 
         sp = (Spinner) findViewById(R.id.sp_setting);
@@ -97,263 +97,258 @@ public class Notification extends AppCompatActivity {
         sp_3.setAdapter(adapter_3);
         sp_3.setVisibility(View.GONE);
 
-        ed_add_num = (EditText)findViewById(R.id.ed_add_num);
+        ed_add_num = (EditText) findViewById(R.id.ed_add_num);
         ed_add_num.setVisibility(View.GONE);
 
-        tv_detail_1 =(TextView)findViewById(R.id.tv_detail_1);
+        tv_detail_1 = (TextView) findViewById(R.id.tv_detail_1);
         tv_detail_1.setVisibility(View.GONE);
 
-        tv_detail_2 =(TextView)findViewById(R.id.tv_detail_2);
+        tv_detail_2 = (TextView) findViewById(R.id.tv_detail_2);
         tv_detail_2.setVisibility(View.GONE);
 
 
-
         location = getIntent().getExtras().getString("location");
-        num_text =getIntent().getExtras().getString("myNumber");
+        num_text = getIntent().getExtras().getString("myNumber");
 
-        btn_notification_save = (Button)findViewById(R.id.btn_notification_save);
-
-        tot = (TextView)findViewById(R.id.tot);
-
-                mRootRef.child("customer").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        String qType = String.valueOf(dataSnapshot.child(user.getUid()+"").child("Add").
-                                child(location+"").child("qType").getValue());
-
-                        String notificationSound = String.valueOf(dataSnapshot.child(user.getUid()+"").child("Add").
-                                child(location+"").child("notification").child("sound").getValue());
-                        String notificationAlarm = String.valueOf(dataSnapshot.child(user.getUid()+"").child("Add").
-                                child(location+"").child("notification").child("alarm").getValue());
-                        String notificationType = String.valueOf(dataSnapshot.child(user.getUid()+"").child("Add").
-                                child(location+"").child("notification").child("type").getValue());
-                        String notificationDetailType = String.valueOf(dataSnapshot.child(user.getUid()+"").child("Add").
-                                child(location+"").child("notification").child("detailType").getValue());
-                        String notificationDetailType2 = String.valueOf(dataSnapshot.child(user.getUid()+"").child("Add").
-                                child(location+"").child("notification").child("detailType2").getValue());
-
-                        ed_add_num.setText(notificationDetailType+"");
-
-                                if (notificationSound.equals("1")){
-                                    sw_alarm.setChecked(true);
-                                }else if(notificationSound.equals("0")){
-                                    sw_alarm.setChecked(false);
-                                }
-
-                        if (qType.equals("0")){
-                            //ร้านน้ำ
-                            sp.setVisibility(View.GONE);
-
-                            if(notificationType.equals("0")){
-                                //ทุกคิว
-                                tv_notification_setting.setEnabled(true);   // รูปแบบการแจ้งเตือน
-                                sp_3.setEnabled(true);
-                                sp_3.setVisibility(View.VISIBLE);
-
-                                tv_detail_1.setEnabled(false);
-                                ed_add_num.setEnabled(false);
-                                tv_detail_1.setVisibility(View.GONE);
-                                ed_add_num.setVisibility(View.GONE);
-
-                                String myString = "ทุกคิว"; //the value you want the position for
-                                ArrayAdapter myAdap = (ArrayAdapter) sp_3.getAdapter(); //cast to an ArrayAdapter
-                                int spinnerPosition = myAdap.getPosition(myString);
-                                sp_3.setSelection(spinnerPosition);
-
-                            }else if(notificationType.equals("1")){
-                                //จำนวนที่กำหนด
-                                tv_notification_setting.setEnabled(true);   // รูปแบบการแจ้งเตือน
-                                sp_3.setEnabled(true);
-                                sp_3.setVisibility(View.VISIBLE);
-
-                                tv_detail_1.setEnabled(true);
-                                ed_add_num.setEnabled(true);
-                                tv_detail_1.setVisibility(View.VISIBLE);
-                                ed_add_num.setVisibility(View.VISIBLE);
-
-                                String myString = "จำนวนที่กำหนด"; //the value you want the position for
-                                ArrayAdapter myAdap = (ArrayAdapter) sp_3.getAdapter(); //cast to an ArrayAdapter
-                                int spinnerPosition = myAdap.getPosition(myString);
-                                sp_3.setSelection(spinnerPosition);
+        btn_notification_save = (Button) findViewById(R.id.btn_notification_save);
 
 
-                            }
+        mRootRef.child("customer").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String qType = String.valueOf(dataSnapshot.child(user.getUid() + "").child("Add").
+                        child(location + "").child("qType").getValue());
 
-                            if (notificationAlarm.equals("1")){
-                                sw_notification.setChecked(true);
-                                tv_notification_setting.setTextColor(Color.parseColor("#000000"));
-                                tv_detail_1.setEnabled(true);
-                                sp_3.setEnabled(true);
-                                ed_add_num.setEnabled(true);
+                String notificationSound = String.valueOf(dataSnapshot.child(user.getUid() + "").child("Add").
+                        child(location + "").child("notification").child("sound").getValue());
+                String notificationAlarm = String.valueOf(dataSnapshot.child(user.getUid() + "").child("Add").
+                        child(location + "").child("notification").child("alarm").getValue());
+                String notificationType = String.valueOf(dataSnapshot.child(user.getUid() + "").child("Add").
+                        child(location + "").child("notification").child("type").getValue());
+                String notificationDetailType = String.valueOf(dataSnapshot.child(user.getUid() + "").child("Add").
+                        child(location + "").child("notification").child("detailType").getValue());
+                String notificationDetailType2 = String.valueOf(dataSnapshot.child(user.getUid() + "").child("Add").
+                        child(location + "").child("notification").child("detailType2").getValue());
 
+                ed_add_num.setText(notificationDetailType + "");
 
-                            }else if(notificationAlarm.equals("0")){
-                                sw_notification.setChecked(false);
-                                tv_notification_setting.setTextColor(Color.parseColor("#cac8ca"));
-                                tv_detail_1.setEnabled(false);
-                                sp_3.setEnabled(false);
-                                ed_add_num.setEnabled(false);
+                if (notificationSound.equals("1")) {
+                    sw_alarm.setChecked(true);
+                } else if (notificationSound.equals("0")) {
+                    sw_alarm.setChecked(false);
+                }
 
+                if (qType.equals("0")) {
+                    //ร้านน้ำ
+                    sp.setVisibility(View.GONE);
 
+                    if (notificationType.equals("0")) {
+                        //ทุกคิว
+                        tv_notification_setting.setEnabled(true);   // รูปแบบการแจ้งเตือน
+                        sp_3.setEnabled(true);
+                        sp_3.setVisibility(View.VISIBLE);
 
-                            }
+                        tv_detail_1.setEnabled(false);
+                        ed_add_num.setEnabled(false);
+                        tv_detail_1.setVisibility(View.GONE);
+                        ed_add_num.setVisibility(View.GONE);
 
+                        String myString = "ทุกคิว"; //the value you want the position for
+                        ArrayAdapter myAdap = (ArrayAdapter) sp_3.getAdapter(); //cast to an ArrayAdapter
+                        int spinnerPosition = myAdap.getPosition(myString);
+                        sp_3.setSelection(spinnerPosition);
 
+                    } else if (notificationType.equals("1")) {
+                        //จำนวนที่กำหนด
+                        tv_notification_setting.setEnabled(true);   // รูปแบบการแจ้งเตือน
+                        sp_3.setEnabled(true);
+                        sp_3.setVisibility(View.VISIBLE);
 
-                        }else if(qType.equals("1")){
-                            //หมูกระทะ
+                        tv_detail_1.setEnabled(true);
+                        ed_add_num.setEnabled(true);
+                        tv_detail_1.setVisibility(View.VISIBLE);
+                        ed_add_num.setVisibility(View.VISIBLE);
 
-                            if(notificationType.equals("0")){
-                                tv_notification_setting.setEnabled(true);   // รูปแบบการแจ้งเตือน
-                                sp.setEnabled(true);                        // spinner เลือกรูปแบบ
-
-                                tv_detail_1.setEnabled(false);
-                                ed_add_num.setEnabled(false);
-                                tv_detail_1.setVisibility(View.GONE);
-                                ed_add_num.setVisibility(View.GONE);
-
-                                tv_detail_2.setEnabled(false);
-                                sp_2.setEnabled(false);
-                                tv_detail_2.setVisibility(View.GONE);
-                                sp_2.setVisibility(View.GONE);
-
-                                String myString = "ทุกคิว"; //the value you want the position for
-                                ArrayAdapter myAdap = (ArrayAdapter) sp.getAdapter(); //cast to an ArrayAdapter
-                                int spinnerPosition = myAdap.getPosition(myString);
-                                sp.setSelection(spinnerPosition);
-
-                            }else if(notificationType.equals("1")){
-                                tv_notification_setting.setEnabled(true);   // รูปแบบการแจ้งเตือน
-                                sp.setEnabled(true);                        // spinner เลือกรูปแบบ
-
-                                tv_detail_1.setEnabled(true);
-                                ed_add_num.setEnabled(true);
-                                tv_detail_1.setVisibility(View.VISIBLE);
-                                ed_add_num.setVisibility(View.VISIBLE);
-
-                                tv_detail_2.setEnabled(false);              // เวลาที่ต้องการ
-                                sp_2.setEnabled(false);
-                                tv_detail_2.setVisibility(View.GONE);
-                                sp_2.setVisibility(View.GONE);
-
-                                String myString = "จำนวนที่กำหนด"; //the value you want the position for
-                                ArrayAdapter myAdap = (ArrayAdapter) sp.getAdapter(); //cast to an ArrayAdapter
-                                int spinnerPosition = myAdap.getPosition(myString);
-                                sp.setSelection(spinnerPosition);
-
-
-                            }else if(notificationType.equals("2")){
-                                tv_notification_setting.setEnabled(true);   // รูปแบบการแจ้งเตือน
-                                sp.setEnabled(true);                        // spinner เลือกรูปแบบ
-
-                                tv_detail_1.setEnabled(false);
-                                ed_add_num.setEnabled(false);
-                                tv_detail_1.setVisibility(View.GONE);
-                                ed_add_num.setVisibility(View.GONE);
-
-                                tv_detail_2.setEnabled(true);              // เวลาที่ต้องการ
-                                sp_2.setEnabled(true);
-                                tv_detail_2.setVisibility(View.VISIBLE);
-                                sp_2.setVisibility(View.VISIBLE );
-
-                                String myString = "ก่อนระยะเวลาที่กำหนด"; //the value you want the position for
-                                ArrayAdapter myAdap = (ArrayAdapter) sp.getAdapter(); //cast to an ArrayAdapter
-                                int spinnerPosition = myAdap.getPosition(myString);
-                                sp.setSelection(spinnerPosition);
-
-                            }
-
-                            if(notificationDetailType2.equals("0")){
-                                // "5 นาที"
-                                String myString = "5 นาที"; //the value you want the position for
-                                ArrayAdapter myAdap = (ArrayAdapter) sp_2.getAdapter(); //cast to an ArrayAdapter
-                                int spinnerPosition = myAdap.getPosition(myString);
-                                sp_2.setSelection(spinnerPosition);
-                            }else if(notificationDetailType2.equals("1")){
-                                // "10 นาที"
-                                String myString = "10 นาที"; //the value you want the position for
-                                ArrayAdapter myAdap = (ArrayAdapter) sp_2.getAdapter(); //cast to an ArrayAdapter
-                                int spinnerPosition = myAdap.getPosition(myString);
-                                sp_2.setSelection(spinnerPosition);
-                            }
-                            else if(notificationDetailType2.equals("2")){
-                                // "20 นาที",
-                                String myString = "20 นาที"; //the value you want the position for
-                                ArrayAdapter myAdap = (ArrayAdapter) sp_2.getAdapter(); //cast to an ArrayAdapter
-                                int spinnerPosition = myAdap.getPosition(myString);
-                                sp_2.setSelection(spinnerPosition);
-                            }
-                            else if(notificationDetailType2.equals("3")){
-                                // "30 นาที"
-                                String myString = "30 นาที"; //the value you want the position for
-                                ArrayAdapter myAdap = (ArrayAdapter) sp_2.getAdapter(); //cast to an ArrayAdapter
-                                int spinnerPosition = myAdap.getPosition(myString);
-                                sp_2.setSelection(spinnerPosition);
-                            }
-                            else if(notificationDetailType2.equals("4")){
-                                // "60 นาที"
-                                String myString = "60 นาที"; //the value you want the position for
-                                ArrayAdapter myAdap = (ArrayAdapter) sp_2.getAdapter(); //cast to an ArrayAdapter
-                                int spinnerPosition = myAdap.getPosition(myString);
-                                sp_2.setSelection(spinnerPosition);
-                            }
-
-
-
-                            if (notificationAlarm.equals("1")){
-                                sw_notification.setChecked(true);
-                                tv_notification_setting.setTextColor(Color.parseColor("#000000"));
-                                sp.setEnabled(true);
-                                sp.setVisibility(View.VISIBLE);
-                                tv_detail_1.setEnabled(true);
-                                ed_add_num.setEnabled(true);
-                                tv_detail_2.setEnabled(true);
-                                sp_2.setEnabled(true);
-
-
-                            }else if(notificationAlarm.equals("0")){
-                                sw_notification.setChecked(false);
-                                tv_notification_setting.setTextColor(Color.parseColor("#cac8ca"));
-                                sp.setEnabled(false);
-                                tv_detail_1.setEnabled(false);
-                                ed_add_num.setEnabled(false);
-                                tv_detail_2.setEnabled(false);
-                                sp_2.setEnabled(false);
-
-                            }
-
-                        }
-
-                        ////get data for ed_num and spinner time
+                        String myString = "จำนวนที่กำหนด"; //the value you want the position for
+                        ArrayAdapter myAdap = (ArrayAdapter) sp_3.getAdapter(); //cast to an ArrayAdapter
+                        int spinnerPosition = myAdap.getPosition(myString);
+                        sp_3.setSelection(spinnerPosition);
 
 
                     }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+
+                    if (notificationAlarm.equals("1")) {
+                        sw_notification.setChecked(true);
+                        tv_notification_setting.setTextColor(Color.parseColor("#000000"));
+                        tv_detail_2.setTextColor(Color.parseColor("#000000"));
+                        tv_detail_1.setEnabled(true);
+                        sp_3.setEnabled(true);
+                        ed_add_num.setEnabled(true);
+
+
+                    } else if (notificationAlarm.equals("0")) {
+                        sw_notification.setChecked(false);
+                        tv_notification_setting.setTextColor(Color.parseColor("#cac8ca"));
+                        tv_detail_1.setEnabled(false);
+                        tv_detail_2.setTextColor(Color.parseColor("#cac8ca"));
+                        sp_3.setEnabled(false);
+                        ed_add_num.setEnabled(false);
+
 
                     }
-                });
 
+
+                } else if (qType.equals("1")) {
+                    //หมูกระทะ
+
+                    if (notificationType.equals("0")) {
+                        tv_notification_setting.setEnabled(true);   // รูปแบบการแจ้งเตือน
+                        sp.setEnabled(true);                        // spinner เลือกรูปแบบ
+
+                        tv_detail_1.setEnabled(false);
+                        ed_add_num.setEnabled(false);
+                        tv_detail_1.setVisibility(View.GONE);
+                        ed_add_num.setVisibility(View.GONE);
+
+                        tv_detail_2.setEnabled(false);
+                        sp_2.setEnabled(false);
+                        tv_detail_2.setVisibility(View.GONE);
+                        sp_2.setVisibility(View.GONE);
+
+                        String myString = "ทุกคิว"; //the value you want the position for
+                        ArrayAdapter myAdap = (ArrayAdapter) sp.getAdapter(); //cast to an ArrayAdapter
+                        int spinnerPosition = myAdap.getPosition(myString);
+                        sp.setSelection(spinnerPosition);
+
+                    } else if (notificationType.equals("1")) {
+                        tv_notification_setting.setEnabled(true);   // รูปแบบการแจ้งเตือน
+                        sp.setEnabled(true);                        // spinner เลือกรูปแบบ
+
+                        tv_detail_1.setEnabled(true);
+                        ed_add_num.setEnabled(true);
+                        tv_detail_1.setVisibility(View.VISIBLE);
+                        ed_add_num.setVisibility(View.VISIBLE);
+
+                        tv_detail_2.setEnabled(false);              // เวลาที่ต้องการ
+                        sp_2.setEnabled(false);
+                        tv_detail_2.setVisibility(View.GONE);
+                        sp_2.setVisibility(View.GONE);
+
+                        String myString = "จำนวนที่กำหนด"; //the value you want the position for
+                        ArrayAdapter myAdap = (ArrayAdapter) sp.getAdapter(); //cast to an ArrayAdapter
+                        int spinnerPosition = myAdap.getPosition(myString);
+                        sp.setSelection(spinnerPosition);
+
+
+                    } else if (notificationType.equals("2")) {
+                        tv_notification_setting.setEnabled(true);   // รูปแบบการแจ้งเตือน
+                        sp.setEnabled(true);                        // spinner เลือกรูปแบบ
+
+                        tv_detail_1.setEnabled(false);
+                        ed_add_num.setEnabled(false);
+                        tv_detail_1.setVisibility(View.GONE);
+                        ed_add_num.setVisibility(View.GONE);
+
+                        tv_detail_2.setEnabled(true);              // เวลาที่ต้องการ
+                        sp_2.setEnabled(true);
+                        tv_detail_2.setVisibility(View.VISIBLE);
+                        sp_2.setVisibility(View.VISIBLE);
+
+                        String myString = "ก่อนระยะเวลาที่กำหนด"; //the value you want the position for
+                        ArrayAdapter myAdap = (ArrayAdapter) sp.getAdapter(); //cast to an ArrayAdapter
+                        int spinnerPosition = myAdap.getPosition(myString);
+                        sp.setSelection(spinnerPosition);
+
+                    }
+
+                    if (notificationDetailType2.equals("0")) {
+                        // "5 นาที"
+                        String myString = "5 นาที"; //the value you want the position for
+                        ArrayAdapter myAdap = (ArrayAdapter) sp_2.getAdapter(); //cast to an ArrayAdapter
+                        int spinnerPosition = myAdap.getPosition(myString);
+                        sp_2.setSelection(spinnerPosition);
+                    } else if (notificationDetailType2.equals("1")) {
+                        // "10 นาที"
+                        String myString = "10 นาที"; //the value you want the position for
+                        ArrayAdapter myAdap = (ArrayAdapter) sp_2.getAdapter(); //cast to an ArrayAdapter
+                        int spinnerPosition = myAdap.getPosition(myString);
+                        sp_2.setSelection(spinnerPosition);
+                    } else if (notificationDetailType2.equals("2")) {
+                        // "20 นาที",
+                        String myString = "20 นาที"; //the value you want the position for
+                        ArrayAdapter myAdap = (ArrayAdapter) sp_2.getAdapter(); //cast to an ArrayAdapter
+                        int spinnerPosition = myAdap.getPosition(myString);
+                        sp_2.setSelection(spinnerPosition);
+                    } else if (notificationDetailType2.equals("3")) {
+                        // "30 นาที"
+                        String myString = "30 นาที"; //the value you want the position for
+                        ArrayAdapter myAdap = (ArrayAdapter) sp_2.getAdapter(); //cast to an ArrayAdapter
+                        int spinnerPosition = myAdap.getPosition(myString);
+                        sp_2.setSelection(spinnerPosition);
+                    } else if (notificationDetailType2.equals("4")) {
+                        // "60 นาที"
+                        String myString = "60 นาที"; //the value you want the position for
+                        ArrayAdapter myAdap = (ArrayAdapter) sp_2.getAdapter(); //cast to an ArrayAdapter
+                        int spinnerPosition = myAdap.getPosition(myString);
+                        sp_2.setSelection(spinnerPosition);
+                    }
+
+
+                    if (notificationAlarm.equals("1")) {
+                        sw_notification.setChecked(true);
+                        tv_notification_setting.setTextColor(Color.parseColor("#000000"));
+                        tv_detail_2.setTextColor(Color.parseColor("#000000"));
+                        sp.setEnabled(true);
+                        sp.setVisibility(View.VISIBLE);
+                        tv_detail_1.setEnabled(true);
+                        ed_add_num.setEnabled(true);
+                        tv_detail_2.setEnabled(true);
+                        sp_2.setEnabled(true);
+
+
+                    } else if (notificationAlarm.equals("0")) {
+                        sw_notification.setChecked(false);
+                        tv_notification_setting.setTextColor(Color.parseColor("#cac8ca"));
+                        tv_detail_2.setTextColor(Color.parseColor("#cac8ca"));
+                        sp.setEnabled(false);
+                        tv_detail_1.setEnabled(false);
+                        ed_add_num.setEnabled(false);
+                        tv_detail_2.setEnabled(false);
+                        sp_2.setEnabled(false);
+
+                    }
+
+                }
+
+                ////get data for ed_num and spinner time
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
         sw_alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sw_alarm.isChecked()){
+                if (sw_alarm.isChecked()) {
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    DatabaseReference mCodeNotificationSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(location+"")
+                    DatabaseReference mCodeNotificationSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(location + "")
                             .child("notification").child("sound");
                     mCodeNotificationSound.setValue("1");
 
-                }else{
+                } else {
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    DatabaseReference mCodeNotificationSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(location+"")
+                    DatabaseReference mCodeNotificationSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(location + "")
                             .child("notification").child("sound");
                     mCodeNotificationSound.setValue("0");
 
@@ -362,10 +357,10 @@ public class Notification extends AppCompatActivity {
         });
 
 
-        sw_notification.setOnClickListener(new View.OnClickListener(){
+        sw_notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(sw_notification.isChecked()){
+                if (sw_notification.isChecked()) {
 
                     sp.setEnabled(true);
 
@@ -383,12 +378,12 @@ public class Notification extends AppCompatActivity {
                     sp_3.setEnabled(true);
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    DatabaseReference mCodeNotificationSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(location+"")
+                    DatabaseReference mCodeNotificationSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(location + "")
                             .child("notification").child("alarm");
                     mCodeNotificationSound.setValue("1");
 
 
-                }else if (!sw_notification.isChecked()){
+                } else if (!sw_notification.isChecked()) {
 
                     sp.setEnabled(false);
 
@@ -406,7 +401,7 @@ public class Notification extends AppCompatActivity {
                     sp_2.setEnabled(false);
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    DatabaseReference mCodeNotificationSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(location+"")
+                    DatabaseReference mCodeNotificationSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(location + "")
                             .child("notification").child("alarm");
                     mCodeNotificationSound.setValue("0");
 
@@ -417,34 +412,35 @@ public class Notification extends AppCompatActivity {
         });
 
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                         @Override
+                                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                DatabaseReference mCodeNotificationType = mRootRef.child("customer").child(user.getUid()).child("Add").child(location+"")
-                        .child("notification").child("type");
+                                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                             DatabaseReference mCodeNotificationType = mRootRef.child("customer").child(user.getUid()).child("Add").child(location + "")
+                                                     .child("notification").child("type");
 
-                switch (i){
-                    case 0:
-                        mCodeNotificationType.setValue("0");
-                        break; //ทุกคิว
+                                             switch (i) {
+                                                 case 0:
+                                                     mCodeNotificationType.setValue("0");
+                                                     break; //ทุกคิว
 
-                    case 1:
-                        mCodeNotificationType.setValue("1");
-                        break; //จำนวนที่กำหนด
+                                                 case 1:
+                                                     mCodeNotificationType.setValue("1");
+                                                     break; //จำนวนที่กำหนด
 
-                    case 2:
-                        mCodeNotificationType.setValue("2");
-                        break; //ก่อนเวลาที่กำหนด
-                }
+                                                 case 2:
+                                                     mCodeNotificationType.setValue("2");
+                                                     break; //ก่อนเวลาที่กำหนด
+                                             }
 
 
-            }
+                                         }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+                                         @Override
+                                         public void onNothingSelected(AdapterView<?> adapterView) {
 
-            }}
+                                         }
+                                     }
 
 
         );
@@ -458,8 +454,8 @@ public class Notification extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                if (ed_add_num.getText().toString().equals("0")&&(i2>=1)){
-                    Toast.makeText(getApplicationContext(), "ไม่ควรจะเป็น0" ,Toast.LENGTH_SHORT).show();
+                if (ed_add_num.getText().toString().equals("0") && (i2 >= 1)) {
+                    Toast.makeText(getApplicationContext(), "ไม่ควรจะเป็น0", Toast.LENGTH_SHORT).show();
                     ed_add_num.setText("");
                 }
 
@@ -467,6 +463,21 @@ public class Notification extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+
+                    mRootRef.child("customer").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                DatabaseReference mCodeNotificationBtnSound = mRootRef.child("customer").child(user.getUid())
+                                        .child("Add").child(location + "").child("notification").child("detailType");
+                                mCodeNotificationBtnSound.setValue(ed_add_num.getText().toString() + "");
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
 
             }
         });
@@ -476,9 +487,9 @@ public class Notification extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                DatabaseReference mCodeNotificationDetailType2 = mRootRef.child("customer").child(user.getUid()).child("Add").child(location+"")
+                DatabaseReference mCodeNotificationDetailType2 = mRootRef.child("customer").child(user.getUid()).child("Add").child(location + "")
                         .child("notification").child("detailType2");
-               switch (i){
+                switch (i) {
                     case 0:
                         mCodeNotificationDetailType2.setValue("0");
                         break;
@@ -497,7 +508,6 @@ public class Notification extends AppCompatActivity {
                 }
 
 
-
             }
 
             @Override
@@ -511,10 +521,10 @@ public class Notification extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                DatabaseReference mCodeNotificationType = mRootRef.child("customer").child(user.getUid()).child("Add").child(location+"")
+                DatabaseReference mCodeNotificationType = mRootRef.child("customer").child(user.getUid()).child("Add").child(location + "")
                         .child("notification").child("type");
 
-                switch (i){
+                switch (i) {
                     case 0:
                         mCodeNotificationType.setValue("0");
                         break; //ทุกคิว
@@ -533,77 +543,67 @@ public class Notification extends AppCompatActivity {
 
             }
 
-        }
-
-
-        );
-
-
-        btn_notification_save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (view==btn_notification_save){
-
-                        mRootRef.child("customer").addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
-                               notificationTypeBtn = String.valueOf(dataSnapshot.child(user.getUid()+"").child("Add").
-                                        child(location+"").child("notification").child("type").getValue());
-                              /*  String notificationDetailTypeBtn = String.valueOf(dataSnapshot.child(user.getUid()+"").child("Add").
-                                        child(location+"").child("notification").child("detailType").getValue());
-                                String notificationDetailTypeBtn2 = String.valueOf(dataSnapshot.child(user.getUid()+"").child("Add").
-                                        child(location+"").child("notification").child("detailType2").getValue());
-                              */
-                                if (notificationTypeBtn.equals("0")){
-                                    //ทุกคิว
-                                        finish();
-                                        onBackPressed();
-                                } else if(notificationTypeBtn.equals("1")){
-                                    //เต็มตัวเลข
-                                    DatabaseReference mCodeNotificationBtnSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(location+"")
-                                            .child("notification").child("detailType");
-                                    mCodeNotificationBtnSound.setValue(ed_add_num.getText().toString()+"");
-                                        finish();
-                                        onBackPressed();
-                                } else if(notificationTypeBtn.equals("2")){
-                                   //spinner
-                                  /* Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
-                                   intent.putExtra("location", location);
-                                   intent.putExtra("myNumber", num_text);
-                                   startActivity(intent);
-                                   */
-                                        finish();
-                                        onBackPressed();
-                               }
-
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-
-
-
-                }
-
-
-
-
-
-            }
         });
 
 
+    }
+
+
+    public void btnSaveNotification(View view) {
+
+      /*  if(view==btn_notification_save){
+            mRootRef.child("customer").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+                    notificationTypeBtn = String.valueOf(dataSnapshot.child(user.getUid() + "").child("Add").
+                            child(location + "").child("notification").child("type").getValue());
+                    String notificationDetailTypeBtn = String.valueOf(dataSnapshot.child(user.getUid() + "").child("Add").
+                            child(location + "").child("notification").child("detailType").getValue());
+                    String notificationDetailTypeBtn2 = String.valueOf(dataSnapshot.child(user.getUid() + "").child("Add").
+                            child(location + "").child("notification").child("detailType2").getValue());
+
+                    if (notificationTypeBtn.equals("0")) {
+                        //ทุกคิว
+                        finish();
+                        onBackPressed();
+                    } else if (notificationTypeBtn.equals("1")) {
+                        //เต็มตัวเลข
+                        DatabaseReference mCodeNotificationBtnSound = mRootRef.child("customer").child(user.getUid()).child("Add").child(location + "")
+                                .child("notification").child("detailType");
+                        mCodeNotificationBtnSound.setValue(ed_add_num.getText().toString() + "");
+                        finish();
+                        onBackPressed();
+                    } else if (notificationTypeBtn.equals("2")) {
+                        //spinner
+                        finish();
+                        onBackPressed();
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+*/
+                finish();
+                onBackPressed();
 
     }
+
+
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -620,9 +620,9 @@ public class Notification extends AppCompatActivity {
             // Intent intent = new Intent(getApplicationContext(),Notification.class);
             // startActivity(intent);
         }else if(id == android.R.id.home){
-            //finish();
-            //onBackPressed();
-            //return true;
+            finish();
+            onBackPressed();
+                return true;
         }
         return super.onOptionsItemSelected(item);
 

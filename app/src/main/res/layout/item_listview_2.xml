@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="78dp"
+    android:layout_height="85dp"
     android:orientation="vertical"
     android:layout_marginTop="5dp"
     android:layout_marginLeft="5dp"
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="#ECEFF1"
-        android:textSize="@dimen/text_size19"
+        android:textSize="@dimen/text_size21"
         android:textColor="#000000"
         android:paddingTop="5dp"
         android:paddingLeft="15dp"
@@ -29,17 +29,17 @@
 
         <TextView
             android:id="@+id/textShowList2_1"
-            android:layout_width="95dp"
-            android:layout_height="35dp"
+            android:layout_width="105dp"
+            android:layout_height="40dp"
             android:background="#ECEFF1"
             android:gravity="center"
-            android:textSize="@dimen/text_size17"
+            android:textSize="@dimen/text_size18"
             android:text="เหลืออีก  :" />
 
         <TextView
             android:id="@+id/qShop"
             android:layout_width="61dp"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:background="#ECEFF1"
             android:gravity="center"
             android:textSize="@dimen/text_size17"
@@ -47,12 +47,12 @@
 
         <TextView
             android:id="@+id/textShowList2_2"
-            android:layout_width="219dp"
-            android:layout_height="35dp"
+            android:layout_width="210dp"
+            android:layout_height="40dp"
             android:background="#ECEFF1"
             android:textSize="@dimen/text_size17"
             android:layout_gravity="center"
-            android:paddingTop="5dp"
+            android:paddingTop="8dp"
             android:paddingLeft="10dp"
             android:text="คิว" />
 

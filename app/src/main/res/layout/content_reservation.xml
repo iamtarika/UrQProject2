@@ -7,8 +7,7 @@ android:layout_height="match_parent"
 app:layout_behavior="@string/appbar_scrolling_view_behavior"
 tools:context="com.example.jnstar.urqproject.Reservation"
 tools:showIn="@layout/activity_reservation"
-android:orientation="vertical"
-    >
+android:orientation="vertical">
 
 <LinearLayout
     android:layout_width="wrap_content"
@@ -30,22 +29,23 @@ android:orientation="vertical"
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:gravity="center"
+            android:background="#ECEFF1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/text_reserve_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
                 android:text="เวลาเปิด-ปิด : "
                 android:textAppearance="@style/text_size20" />
@@ -54,6 +54,7 @@ android:orientation="vertical"
                 android:id="@+id/text_reserve_time_open_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="xx.00-xx.00"
                 android:textAppearance="@style/text_size20" />
@@ -63,7 +64,7 @@ android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text=" น."
+                android:text="  น."
                 android:textAppearance="@style/text_size20" />
         </LinearLayout>
 
@@ -71,13 +72,14 @@ android:orientation="vertical"
             android:id="@+id/linear_1"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:gravity="center"
+            android:background="#ECEFF1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/text_reserve_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
                 android:text="เปิดจองคิวเวลา : "
                 android:textAppearance="@style/text_size20" />
@@ -86,6 +88,7 @@ android:orientation="vertical"
                 android:id="@+id/text_reserve_time_reserve"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="xx.00"
                 android:textAppearance="@style/text_size20" />
@@ -94,7 +97,7 @@ android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text=" น."
+                android:text="  น."
                 android:textAppearance="@style/text_size20" />
         </LinearLayout>
 
@@ -102,15 +105,16 @@ android:orientation="vertical"
             android:id="@+id/linear_2"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:gravity="center"
+            android:background="#ECEFF1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/text_reserve_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
-                android:text="หากจองต้องรอ"
+                android:text="หากจองต้องรอ :"
                 android:textAppearance="@style/text_size20" />
 
 
@@ -118,6 +122,7 @@ android:orientation="vertical"
                 android:id="@+id/text_reserve_q_wait"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text=" 10 "
                 android:textAppearance="@style/text_size20" />
@@ -127,35 +132,38 @@ android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text=" คิว "
+                android:text="  คิว"
                 android:textAppearance="@style/text_size20" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_height="55dp"
+            android:background="#ECEFF1"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
-                android:text="จำนวนคน"
+                android:gravity="center"
+                android:text="โปรดระบุจำนวนคน :"
                 android:textAppearance="@style/text_size20" />
 
             <EditText
                 android:id="@+id/et_reserve_no_customer"
-                android:layout_width="35dp"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:text="1"
-                android:layout_marginRight="30sp"
-                android:layout_marginLeft="30sp"
+                android:layout_marginRight="15sp"
+                android:layout_marginLeft="15sp"
                 android:textColorLink="@color/colorPrimaryDark"
                 android:textSize="22sp"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:theme="@style/et_style_fill"
                 />
 
@@ -171,30 +179,24 @@ android:orientation="vertical"
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="90dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_reserve"
-                android:onClick="onClickReserve"
-                android:layout_width="200dp"
+                style="@style/reserve_button"
+                android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:text="จอง"
-                style="@style/reserve_button"/>
+                android:onClick="onClickReserve"
+                android:text="จองคิว" />
 
         </LinearLayout>
 
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tarika"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="............."
-    />
+
 
 
 

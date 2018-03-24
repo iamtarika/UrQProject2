@@ -47,7 +47,7 @@ public class Reservation extends AppCompatActivity {
 
     String getName;
     int i=1;
-    TextView tarika;
+
 
     TextView name_reserve_store;
     Spinner sp_reserve_no_customer;
@@ -95,8 +95,6 @@ public class Reservation extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        tarika = (TextView)findViewById(R.id.tarika);
-
 
         name_reserve_store = (TextView)findViewById(R.id.name_reserve_store);
         text_reserve_time_open_close = (TextView)findViewById(R.id.text_reserve_time_open_close);
@@ -131,7 +129,7 @@ public class Reservation extends AppCompatActivity {
                                 text_reserve_time_reserve.setText(timeReserve);
                                 getUid = String.valueOf(shopSnapshot.getKey());
                                 getTable = String.valueOf(shopSnapshot.child("shopName").child("numServer").getValue());
-                                            tarika.setText(getTable+"");
+
                                 int k=1;
                                 countQ =0;
                                 countFinish =0;

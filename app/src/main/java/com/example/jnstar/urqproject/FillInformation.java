@@ -57,7 +57,7 @@ public class FillInformation extends AppCompatActivity {
     private static final int CODE_SIZE=4;
 
 
-TextView test_2;
+
 
 
     @Override
@@ -74,7 +74,7 @@ TextView test_2;
         et_pin = (EditText)findViewById(R.id.et_pin);
         areaSpinner = (Spinner) findViewById(R.id.sp_location_q);
 
-        test_2 = (TextView)findViewById(R.id.text_2) ;
+
 
         mRootRef.child("user").addValueEventListener(new ValueEventListener() {
             @Override
@@ -107,7 +107,7 @@ TextView test_2;
 
                     temp = i+1 ;
 
-                final TextView a2 = (TextView) findViewById(R.id.text_2);
+               // final TextView a2 = (TextView) findViewById(R.id.text_2);
                 final int[] k = {1};
                 mRootRef.child("user").addValueEventListener(new ValueEventListener() {
                     @Override
@@ -118,7 +118,7 @@ TextView test_2;
                             if(temp == k[0]){
                                 countNo = String.valueOf(numSnapshot.child("qNumber").getChildrenCount());
 
-                                a2.setText(countNo+"--");
+                               // a2.setText(countNo+"--");
 
 
                             }
@@ -303,7 +303,6 @@ TextView test_2;
                                     }else {
                                         if (et_pin.getText().toString().length()<4){
                                             Toast.makeText(getApplicationContext(), "คุณระบุเลขไม่ครบ" ,Toast.LENGTH_SHORT).show();
-                                           // test_2.setText(et_pin.getText().toString()+"");
                                         }else {
                                             Toast.makeText(getApplicationContext(), "คุณระบุเลข pin ผิด" ,Toast.LENGTH_SHORT).show();
                                         }
