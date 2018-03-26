@@ -21,6 +21,7 @@
     <color name="vague_text">#000000</color>
     <color name="verify_text">#000000</color>
     <color name="default_gray_text">#cac8ca</color>
+    <color name="black_grey">#4a4a4a</color>
 
 
 </resources>
